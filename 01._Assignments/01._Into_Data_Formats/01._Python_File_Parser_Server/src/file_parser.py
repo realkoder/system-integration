@@ -1,7 +1,7 @@
 
 def read_file(file_name):
     try:
-        with open('../00._Files/' + file_name, 'r') as file:
+        with open('../../00._Files/' + file_name, 'r') as file:
             file_format = file.name.split('.')[-1]
             lines = file.readlines()
             print(file_format)
