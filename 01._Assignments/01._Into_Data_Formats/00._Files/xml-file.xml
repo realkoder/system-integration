@@ -4,4 +4,9 @@
     <sender>Musk</sender>
     <heading>MORE MORE MORE</heading>
     <body>Don't forget me this weekend!</body>
+    <hobbies>
+        <hobby>electric cars</hobby>
+        <hobby>walls</hobby>
+        <hobby>big data centers</hobby>
+    </hobbies>
 </message>

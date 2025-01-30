@@ -1,0 +1,17 @@
+{
+  "name": "fileparser",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "fileParserScript.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "js-yaml": "^4.1.0",
+    "xml2js": "^0.6.2"
+  }
+}
