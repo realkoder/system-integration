@@ -1,0 +1,11 @@
+# Config
+url: https://intellioptima.com
+  paths:
+    entry: /entry
+    home: /home
+
+email: info@intellioptima.com
+employes:
+  - Alex
+  - Alexander
+  - Mikkel

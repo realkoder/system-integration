@@ -1,0 +1,8 @@
+{
+    "mock": "mock",
+    "object": {
+        "curYear": 2024,
+        "name": "TEST",
+        "isOnline": false
+    }
+}
