@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<me>
+    <name>Skongman</name>
+    <age>999</age>
+    <hobbies>
+        <hobby>Coding</hobby>
+        <hobby>Smoking</hobby>
+        <hobby>Chilling</hobby>
+        <hobby>Puffing</hobby>
+        <hobby>Passing</hobby>
+    </hobbies>
+</me>
