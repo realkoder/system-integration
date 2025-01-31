@@ -1,7 +1,7 @@
 import asyncio
 import os
 import csv
-# import yaml CANT GET THIS WORKING!!!
+import yaml # This is the only thats not build in - using Pyyaml -> https://pypi.org/project/PyYAML/
 import json
 import xml.etree.ElementTree as ET
 
@@ -33,9 +33,9 @@ async def parse_csv(file_path):
             results.append(row)
     return results
 
-# def parse_yaml(file_path):
-#     with open(file_path, 'r', encoding='utf-8') as file:
-#         return yaml.safe_load(file)
+def parse_yaml(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return yaml.safe_load(file)
 
 def parse_json(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -67,7 +67,7 @@ def print_keys_and_types(obj, parent_key=""):
 
 
 async def main():
-    file_path = "../00._Files/json-file.json"
+    file_path = "../00._Files/another-csv-file.csv"
     try:
         data = await parse_file(file_path)
         print("Parsed data:", data)
