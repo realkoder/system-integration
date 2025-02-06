@@ -1,1 +1,7 @@
-# CONFIGRE THE SERVER AND ENDPOINT did run poetry init -n & poetry add fastapi uvicorn
+from fastapi import FastAPI
+
+app = FastAPI();
+
+@app.get("/")
+def root():
+    return { "data": "Hello world" }
