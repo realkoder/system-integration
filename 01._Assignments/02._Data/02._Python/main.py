@@ -1,0 +1,1 @@
+# CONFIGRE THE SERVER AND ENDPOINT did run poetry init -n & poetry add fastapi uvicorn
