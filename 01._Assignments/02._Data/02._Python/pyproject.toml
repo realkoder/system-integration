@@ -1,10 +1,8 @@
 [project]
 name = "02-python"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "realkoder",email = "alexanderbtcc@gmail.com"}
-]
+description = "Simple FastAPI - fileUpload"
+authors = [{ name = "realkoder", email = "alexanderbtcc@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -12,10 +10,6 @@ dependencies = [
     "uvicorn (>=0.34.0,<0.35.0)",
     "python-multipart (>=0.0.20,<0.0.21)",
 ]
-
-[tool.poetry]
-packages = [{include = "02"}]
-
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

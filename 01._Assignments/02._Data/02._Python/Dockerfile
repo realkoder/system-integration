@@ -1,0 +1,51 @@
+# # Followed this guide -> https://medium.com/@albertazzir/blazing-fast-python-docker-builds-with-poetry-a78a66f5aed0
+
+# FROM python:3.11-buster
+
+# RUN pip install poetry==2.0.1
+
+# # The venv=1 makes sure that my environment will be as isolated as possible 
+# # and above all that my installation will not mess up with the system Python or, 
+# # even worse, with Poetry itself.
+# ENV POETRY_NO_INTERACTION=1 \
+#     POETRY_VIRTUALENVS_IN_PROJECT=1 \
+#     POETRY_VIRTUALENVS_CREATE=1 \
+#     POETRY_CACHE_DIR=/tmp/poetry_cache
+
+# WORKDIR /app
+
+# COPY pyproject.toml poetry.lock ./
+# # COPY src ./src
+# RUN touch README.md
+
+# RUN poetry install --without dev --no-root && rm -rf $POETRY_CACHE_DIR
+
+# ENTRYPOINT ["poetry", "run", "python", "-m", "src.main"]
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+# The above didn't work - trying again below
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+#run this to get requirement: poetry run pip freeze > requirements.txt
+FROM python:3.10-slim AS runner
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the requirements file
+COPY requirements.txt ./
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application source code
+COPY src /app/src
+
+# Define the entry point for the container
+ENTRYPOINT ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# Build image based on Dockerfile -> docker build -t python-fileupload .
+
+# Run docker image -> docker run -d --name python-fileupload -p 8000:8000 python-fileupload
