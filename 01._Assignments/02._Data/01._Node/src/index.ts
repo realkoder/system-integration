@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
-// import multer from "multer"; // Middleware used for handling fileuplaods
-// import fs from "fs";
+import fetch from "node-fetch"; // Import node-fetch
 
 import ServerRoutes from './routes/serverRoutes.js';
 
@@ -14,6 +13,19 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/v1', ServerRoutes);
+
+app.get('/fetch-python', (req, res) => {
+  fetch('http://python-api-file-upload:8000/')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch(error => {
+      console.error('Error fetching from Python API:', error);
+      res.status(500).send('Error fetching from Python API');
+    });
+});
 
 app.get("/", (req, res) => {
   res.send({ data: "hello world" });
