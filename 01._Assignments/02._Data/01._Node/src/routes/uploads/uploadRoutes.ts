@@ -17,13 +17,32 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
     storage,
-    // limits: { files: 1, fileSize: 2 * 1024 * 1024 } // bytes
-    limits: { files: 1, fileSize: 2 } // bytes
+    limits: { files: 1, fileSize: 2 * 1024 * 1024 }, // bytes
+    fileFilter: (req, file, cb) => {
+        const allowedTypes = /csv|json|yaml|yml|text\/plain|xml/;
+        const extname = allowedTypes.test(file.mimetype);
+        console.log("MIMIETUPE",file.mimetype);
+        if (extname) {
+            return cb(null, true);
+        } else {
+            cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE'));
+        }
+    }
 });
 
 // POST
-// router.post('/', uploadsController.uploadFile);
-
 router.post("/", upload.single("file"), uploadsController.uploadFile);
+
+router.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        return res.status(400).json({ error: err.message });
+    } else if (err) {
+        console.log("err",err);
+        return res.status(500).json({ error: 'An unknown error occurred.' });
+    }
+    next();
+});
+
+
 
 export default router;
