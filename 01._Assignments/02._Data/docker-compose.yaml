@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+ node-api-fileu-pload:
+  build:
+   context: ./01._Node
+   target: production
+
+  ports:
+   - 8080:8080

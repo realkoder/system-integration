@@ -1,6 +1,6 @@
 import fs from "fs";
 import { Request, Response } from 'express';
-import { parseFile } from "./fileParserScript.ts";
+import { parseFile } from "./fileParserScript.js";
 
 
 const uploadFile = async (req: Request, res: Response): Promise<void> => {

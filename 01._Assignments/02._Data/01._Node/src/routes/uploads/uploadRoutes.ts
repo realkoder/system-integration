@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import multer from "multer"; // Middleware used for handling fileuplaods
-import uploadsController from '../../domains/uploads/controller/uploadsController.ts';
+import uploadsController from '../../domains/uploads/controller/uploadsController.js';
 import fs from "fs";
 
 const router = Router();

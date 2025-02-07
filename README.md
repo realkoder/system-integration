@@ -6,6 +6,12 @@
 
 Everything in node is a module. A file is considered a module.
 
+#### NodeJS with Typescript
+
+Had a lot of issues regarding the use of `ES modules` instead of `commonjs` and importing files. First I thought it should be imported with extension `.ts`, which worked when setting the `tsconfig` file up for that. But making use of `"noEmit": true, "allowImportingTsExtensions": true` in tsconfig messed with `npm run build` since the `.ts` files couldn't be imported for the emitted js files. 
+
+This video explains it somehow -> https://www.youtube.com/watch?v=8ORIzvgNWhU
+
 <br>
 
 ---
