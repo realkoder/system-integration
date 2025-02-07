@@ -17,11 +17,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
     storage,
-    limits: { files: 1, fileSize: 2 * 1024 * 1024 }, // bytes
+    limits: { files: 1, fileSize: 1 * 1024 * 1024 }, // bytes
     fileFilter: (req, file, cb) => {
         const allowedTypes = /csv|json|yaml|yml|text\/plain|xml/;
         const extname = allowedTypes.test(file.mimetype);
-        console.log("MIMIETUPE",file.mimetype);
         if (extname) {
             return cb(null, true);
         } else {
