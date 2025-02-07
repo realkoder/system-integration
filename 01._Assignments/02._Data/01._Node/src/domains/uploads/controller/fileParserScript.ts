@@ -4,7 +4,7 @@ import yaml from "js-yaml";
 import csvParser from "csv-parser";
 import xml2js from "xml2js";
 
-export async function parseFile(filePath) {
+export async function parseFile(filePath: string) {
   const ext = path.extname(filePath).toLowerCase();
   let data;
   switch (ext) {
@@ -28,12 +28,12 @@ export async function parseFile(filePath) {
       throw new Error("Unsupported file format");
   }
 
-  printKeysAndTypes(data);
+  // printKeysAndTypes(data);
 
   return data;
 }
 
-function parseCSV(filePath) {
+function parseCSV(filePath: string) {
   return new Promise((resolve, reject) => {
     const results = [];
     fs.createReadStream(filePath)
