@@ -29,7 +29,7 @@
 
 
 #run this to get requirement: poetry run pip freeze > requirements.txt
-FROM python:3.10-slim AS runner
+FROM python:3.10-slim AS develop
 
 # Set the working directory
 WORKDIR /app
@@ -44,8 +44,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src /app/src
 
 # Define the entry point for the container
-ENTRYPOINT ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+# -------------------- Docker commands for building image and running it --------------------
 
 # Build image based on Dockerfile -> docker build -t python-fileupload .
-
 # Run docker image -> docker run -d --name python-fileupload -p 8000:8000 python-fileupload
+
+# -------------------------------------------------------------------------------------------

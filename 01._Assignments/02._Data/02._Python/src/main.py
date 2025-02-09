@@ -11,7 +11,6 @@ def root():
 @app.post('/parse-file-nodejs-server')
 async def parse_file_nodejs_server(file: UploadFile = File(...)):
     try:
-
         if file.filename.endswith(('.txt', '.yaml', '.xml', '.yml', '.json')):
             print("Okay we here file accepted now parsing file to nodeJSServer")
 
