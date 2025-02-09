@@ -3,13 +3,17 @@ services:
  node-api-file-upload:
   build:
    context: ./01._Node
-   target: production
+   target: develop
+   dockerfile: Dockerfile.dev
+
 
   ports:
    - 8080:8080
  python-api-file-upload:
   build:
-   context: ./02._Python
+    context: ./02._Python
+    target: develop
+    dockerfile: Dockerfile.dev
 
   ports:
    - 8000:8000

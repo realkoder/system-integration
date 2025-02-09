@@ -21,6 +21,7 @@ const upload = multer({
     fileFilter: (req, file, cb) => {
         const allowedTypes = /csv|json|yaml|yml|text\/plain|xml/;
         const extname = allowedTypes.test(file.mimetype);
+        console.log("mimetype", file.mimetype);
         if (extname) {
             return cb(null, true);
         } else {
