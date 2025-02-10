@@ -1,0 +1,10 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: files-handler
+  
+  devtools:
+    restart:
+      exclude: "uploads/**"

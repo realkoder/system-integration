@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
         cb(null, file.originalname); // Keep the original file name
     },
 });
+
 const upload = multer({
     storage,
     limits: { files: 1, fileSize: 1 * 1024 * 1024 }, // bytes
