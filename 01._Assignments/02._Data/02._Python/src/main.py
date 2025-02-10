@@ -12,8 +12,6 @@ def root():
 async def parse_file_nodejs_server(file: UploadFile = File(...)):
     try:
         if file.filename.endswith(('.txt', '.yaml', '.xml', '.yml', '.json')):
-            print("Okay we here file accepted now parsing file to nodeJSServer")
-
             async with httpx.AsyncClient() as client:
                 response = await client.post("http://node-api-file-upload:8080/api/v1/uploads",
                                              files={"file": (file.filename, file.file, file.content_type)})
