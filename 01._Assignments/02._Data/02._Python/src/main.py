@@ -16,7 +16,7 @@ async def parse_file_nodejs_server(file: UploadFile = File(...)):
                 response = await client.post("http://node-api-file-upload:8080/api/v1/uploads",
                                              files={"file": (file.filename, file.file, file.content_type)})
                 return {"data": response.json()}
-            
+
         else:
             raise HTTPException(status_code=400, detail="Only .txt, .yaml, .yml, .xml, and .json files are allowed")
         
