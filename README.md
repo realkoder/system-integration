@@ -2,9 +2,14 @@
 
 ## Here will be overall notes and other misc 🧙
 
+### JavaScript
+
+Do have ASI `automatic semicolon insertion`.
+
 ### NodeJS
 
 Everything in node is a module. A file is considered a module.
+
 
 #### NodeJS with Typescript
 

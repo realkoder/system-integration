@@ -27,7 +27,7 @@ app.get('/fetch-python', (req, res) => {
     });
 });
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send({ data: "hello world from nodejs-server" });
 });
 
