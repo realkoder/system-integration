@@ -125,3 +125,7 @@ const decoded = atob(encoded);
 console.log(encoded);
 console.log(decoded);
 ```
+
+## LINKS
+
+[Can I use" provides up-to-date browser support tables for support of front-end web technologies on desktop and mobile web browsers](https://caniuse.com)

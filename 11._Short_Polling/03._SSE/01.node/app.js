@@ -4,23 +4,19 @@ const app = express();
 
 app.use(express.static("public"));
 
-const clients = [];
-app.get("/subscribe", (req, res) => {
+app.get("/synchronizetime", (req, res) => {
   res.writeHead(200, {
     Connection: "keep-alive",
     "Content-Type": "text/event-stream",
     "Cache-Control": "no-cache",
   });
-  clients.push(res);
-  res.write("data: You have subscribed \n\n");
+  setInterval(() => sendTimeToClient(res), 1000);
 });
 
-app.get("/publish", (req, res) => {
-  clients.forEach((client) =>
-    client.write(`data: You received this message xD \n\n`)
-  );
-  res.send({ data: "message emitted" });
-});
+function sendTimeToClient(res) {
+  const time = new Date().toISOString();
+  res.write(`data: ${time} \n\n`);
+}
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log("Server listening on", PORT));

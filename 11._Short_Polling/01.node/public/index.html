@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Short Polling</title>
+  </head>
+  <body>
+    <h1>Short Polling</h1>
+
+    <div id="randomnumbers"></div>
+
+    <script>
+      const randomnumbers = document.getElementById("randomnumbers");
+      const delay = 1000;
+
+      async function poll() {
+        console.log("FETHING");
+        const res = await fetch("http://localhost:8080/random-numbers");
+        if (res.ok) {
+          const responseData = await res.json();
+          randomnumbers.textContent = responseData.data;
+        } else {
+          randomnumbers.textContent = "WOW - something is not GOOD!";
+        }
+        simulateNewNumbers();
+      }
+      
+      async function simulateNewNumbers() {
+        const res = await fetch("http://localhost:8080/simulate-new-numbers");
+        if (res.ok) {
+          const responseData = await res.json();
+          console.log("NEW NUMBER INSERTED", responseData.data)
+        } else {
+          randomnumbers.textContent = "WOW - something is not GOOD!";
+        }
+      }
+
+      setInterval(poll, delay);
+    </script>
+  </body>
+</html>
