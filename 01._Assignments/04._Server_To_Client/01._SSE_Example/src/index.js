@@ -22,5 +22,10 @@ app.get("/publish", (req, res) => {
   res.send({ data: "message emitted" });
 });
 
+app.get("/close", (req, res) => {
+  clients.forEach((client) => client.end());
+  res.send({ data: "connections has been closed" });
+});
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log("Server listening on", PORT));
