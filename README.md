@@ -1,19 +1,20 @@
 # KEA SoftwareDeveloper - SystemIntegration
 
-## Here will be overall notes and other misc 🧙
+> Here will be overall notes and other misc 🧙
 
-### JavaScript
+## JavaScript
 
 Do have ASI `automatic semicolon insertion`.
 
-### NodeJS
+<br>
+
+## NodeJS
 
 Everything in node is a module. A file is considered a module.
 
+### NodeJS with Typescript
 
-#### NodeJS with Typescript
-
-Had a lot of issues regarding the use of `ES modules` instead of `commonjs` and importing files. First I thought it should be imported with extension `.ts`, which worked when setting the `tsconfig` file up for that. But making use of `"noEmit": true, "allowImportingTsExtensions": true` in tsconfig messed with `npm run build` since the `.ts` files couldn't be imported for the emitted js files. 
+Had a lot of issues regarding the use of `ES modules` instead of `commonjs` and importing files. First I thought it should be imported with extension `.ts`, which worked when setting the `tsconfig` file up for that. But making use of `"noEmit": true, "allowImportingTsExtensions": true` in tsconfig messed with `npm run build` since the `.ts` files couldn't be imported for the emitted js files.
 
 This video explains it somehow -> https://www.youtube.com/watch?v=8ORIzvgNWhU
 
@@ -29,14 +30,9 @@ This video explains it somehow -> https://www.youtube.com/watch?v=8ORIzvgNWhU
 
 <br>
 
----
-
-<br>
-
 ## Python
 
 `Poetry` is a mature build system for Python. It configures a `venv` and sets up a `pyproject.toml` file for specification about project regarding metadata, scripts, dependencies.
-
 
 ```bash
 # Initialize with default settings
@@ -53,7 +49,6 @@ exit
 ```
 
 To set the `interpreter` to the poetry venv its placed here `/Users/alexanderchristensen/Library/Caches/pypoetry/virtualenvs/03-poetry-RN3a7CP4-py3.13/bin/python` MAKE SURE TO POINT TO THE EXACT NAME `03-poetry-RN3a7CP4-py3.13`.
-
 
 To fix the issue with `poetry shell` where getting error `The command "shell" does not exist.` Fix it by this -> https://github.com/python-poetry/poetry-plugin-shell
 
@@ -72,7 +67,50 @@ poetry add fastapi uvicorn
 uvicorn main:app --reload
 ```
 
-### Bonus info
+<br>
+
+## Standards (ISO)
+
+**ISO 9126** International standard for ensuring the quality for software products.
+
+[How to Think About Time - for programmers, and people who like to know things](https://errorprone.info/docs/time)
+
+### Time
+
+POSIX = Unix Epoch
+Amount of seconds since _1970-01-01_
+It doesn't take leap seconds into account
+
+UTC (Coordinated Universal Time) is the primary time standard by which the world regulates clocks and time. It is effectively a successor to Greenwich Mean Time (GMT).
+
+![UTC](images/utc.png "UTC")
+
+> Description about IANA from their website
+
+The [Time Zone Database](https://www.iana.org/time-zones) (often called tz or zoneinfo) contains code and data that represent the history of local time for many representative locations around the globe. It is updated periodically to reflect changes made by political bodies to time zone boundaries, UTC offsets, and daylight-saving rules. Its management procedure is documented in BCP 175: Procedures for Maintaining the Time Zone Database.
+
+[Time formatting and storage bugs](https://en.wikipedia.org/wiki/Time_formatting_and_storage_bugs)
+
+#### Dates in js
+
+```js
+const UTC_DATE = new Date(); // UTC Standard ISO 8601
+const LOCAL_DATE = Date(); // Local Date
+const UNIX_EPOCH_DATE = Date.now(); // POSIX / Unix Epoch
+
+// ============== OUTPUT ==============
+// UTC_DATE 2025-02-20T07:57:07.082Z
+// LOCAL_DATE 2025-02-20T07:57:07.082Z
+// UNIX_EPOCH_DATE 1740038227082
+
+const danishDate = new Intl.DateTimeFormat("da-dk").format(UTC_DATE);
+// ============== OUTPUT ==============
+// danishDate 20.2.2025
+```
+
+<br>
+
+## Bonus info
 
 Very nice way to serve html,css,js files for local dev in browser `npx vite`.
 
