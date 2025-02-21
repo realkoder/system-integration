@@ -69,5 +69,7 @@ docker compose up --build
 
 # Access the running docker strictdb as user profile: user
 docker exec -it strictdb psql -U user -d strict_music_database
-docker exec -it strictdb psql
+
+# Access the running docker strictdb as root
+docker exec -it strictdb psql -d strict_music_database
 ```

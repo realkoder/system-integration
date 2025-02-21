@@ -127,7 +127,9 @@ GRANT CONNECT ON DATABASE strict_music_database TO "user";
 GRANT USAGE ON SCHEMA public TO "user";
 
 -- Grant SELECT on all tables in the public schema to "user"
-GRANT SELECT ON ALL TABLES IN SCHEMA public TO "user";
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO "user";
+
+GRANT USAGE, UPDATE ON ALL SEQUENCES IN SCHEMA public TO "user";
 
 -- Alter default privileges to automatically grant SELECT on new tables to "user"
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO "user";
@@ -135,3 +137,10 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON TABLES TO "user";
 -- Exclude access to the 'secret_info' column in the 'artists' table
 REVOKE SELECT ON artists FROM "user";
 GRANT SELECT (id, artist_name, started_year, origin_country, still_active, website_url) ON artists TO "user";
+
+REVOKE INSERT ON artists FROM "user";
+GRANT INSERT (id, artist_name, started_year, origin_country, still_active, website_url) ON artists TO "user";
+
+
+-- INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url) VALUES('MOCK Grips',2011,'DK',FALSE,'https://thirdworlds.net');
+-- INSERT INTO songs (title) VALUES ('mock GRIPS');
