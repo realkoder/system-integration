@@ -16,62 +16,24 @@ cd Integrator
 Then create a `Dockerfile` with the content from below:
 
 ```dockerfile
-# Use the official MySQL image from Docker Hub
-FROM mysql:latest
+# Use the official PostgreSQL image from Docker Hub
+FROM postgres:latest
 
-# Set environment variables for MySQL
-ENV MYSQL_ROOT_PASSWORD=admin
-ENV MYSQL_DATABASE=my_database
-ENV MYSQL_USER=user
-ENV MYSQL_PASSWORD=user
+# Set environment variables for PostgreSQL
+ENV POSTGRES_PASSWORD=admin
+ENV POSTGRES_DB=strict_music_database
 
 # Copy initialization scripts (if any)
 COPY ./init.sql /docker-entrypoint-initdb.d/
 
-# Expose MySQL port
-EXPOSE 3306
+# Expose PostgreSQL port
+EXPOSE 5432
 ```
 
 Now create a file `init.sql` and add the following:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS strict_music_database;
-USE strict_music_database;
 
-CREATE TABLE IF NOT EXISTS artists (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  artist_name VARCHAR(255),
-  started_year INT,
-  origin_country VARCHAR(255),
-  still_active BOOLEAN,
-  website_url VARCHAR(255)
-);
-
-CREATE TABLE IF NOT EXISTS songs (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255),
-  artist_id INT,
-  release_date DATE,
-  genre VARCHAR(255),
-  FOREIGN KEY (artist_id) REFERENCES artists(id)
-);
-
-CREATE TABLE IF NOT EXISTS albums (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255),
-  album_cover_url VARCHAR(255),
-  artist_id INT,
-  release_date DATE,
-  FOREIGN KEY (artist_id) REFERENCES artists(id)
-);
-
-CREATE TABLE IF NOT EXISTS song_album (
-  song_id INT,
-  album_id INT,
-  PRIMARY KEY (song_id, album_id),
-  FOREIGN KEY (song_id) REFERENCES songs(id),
-  FOREIGN KEY (album_id) REFERENCES albums(id)
-);
 
 ```
 
@@ -81,26 +43,31 @@ Create a `docker-compose.yml`
 
 ```yml
 services:
-  mysql:
-    build: .
+  postgres:
+    container_name: strictdb
+    image: postgres:latest
     ports:
-      - "3306:3306"
+      - "5432:5432"
     environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: my_database
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: strict_music_database
     volumes:
-      - mysql_data:/var/lib/mysql
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
-  mysql_data:
+  postgres_data:
 ```
 
 <br>
 
-Now it's time to boot it all up - execute the following command 🚀
+Now it's time to boot it all up and interact - execute the following commands 🚀
 
 ```bash
+# Create the PostgreSQL dockerized container and boot it with docker-compose
 docker compose up --build
+
+# Access the running docker strictdb as user profile: user
+docker exec -it strictdb psql -U user -d strict_music_database
+docker exec -it strictdb psql
 ```
