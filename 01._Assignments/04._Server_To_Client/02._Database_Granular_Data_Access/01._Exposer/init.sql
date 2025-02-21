@@ -43,7 +43,9 @@ CREATE TABLE IF NOT EXISTS song_album (
     FOREIGN KEY (album_id) REFERENCES albums (id)
 );
 
+-- ===========================================
 -- 💽 💽 💽 inserting data to test with 💽 💽 💽
+-- ===========================================
 INSERT INTO
     artists (
         artist_name,
@@ -115,15 +117,13 @@ VALUES
     (2, 2),
     (3, 3);
 
--- USER CREATION AND GRANULAR DATA ACCESS
+-- ==================================================
+-- 👷‍♀️👷‍♀️👷‍♀️ USER CREATION AND GRANULAR DATA ACCESS 👷‍♀️👷‍♀️👷‍♀️
+-- ==================================================
 CREATE ROLE "user" WITH LOGIN PASSWORD 'user';
 
--- Grant privileges to the 'user' on the 'my_database' database
--- GRANT CONNECT ON DATABASE strict_music_database TO "user";
--- GRANT USAGE ON SCHEMA public TO "user";
--- GRANT SELECT (id, artist_name, started_year, origin_country, still_active, website_url) ON artists TO "user";
-
 GRANT CONNECT ON DATABASE strict_music_database TO "user";
+
 GRANT USAGE ON SCHEMA public TO "user";
 
 -- Grant SELECT on all tables in the public schema to "user"
