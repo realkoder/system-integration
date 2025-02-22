@@ -43,3 +43,20 @@ docker exec -it strictdb psql -d strict_music_database
 # Terminate the container and delete created volume
 docker compose down -v
 ```
+
+## Commands to run
+
+Here is the get down!
+```sql
+-- Read from artists but DENIED
+SELECT * FROM artists;
+
+-- Read from artists successfully (since secret_info is omitted)
+SELECT  id, artist_name, started_year, origin_country, still_active, website_url FROM artists;
+
+-- Insert into artist but DENIED
+INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url) VALUES('MOCK Grips',2011,'DK',FALSE,'https://thirdworlds.net');
+
+-- Insert into artist successfully
+INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url, secret_info) VALUES('MOCK Grips',2011,'DK',FALSE,'https://thirdworlds.net', 'Some secrets');
+```

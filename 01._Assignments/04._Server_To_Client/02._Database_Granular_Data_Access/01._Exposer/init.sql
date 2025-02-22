@@ -156,7 +156,3 @@ GRANT SELECT (id, artist_name, started_year, origin_country, still_active, websi
 
 REVOKE INSERT ON artists FROM "user";
 GRANT INSERT (id, artist_name, started_year, origin_country, still_active, website_url) ON artists TO "user";
-
-
--- INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url) VALUES('MOCK Grips',2011,'DK',FALSE,'https://thirdworlds.net');
--- INSERT INTO songs (title) VALUES ('mock GRIPS');
