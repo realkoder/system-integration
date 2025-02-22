@@ -84,30 +84,46 @@ VALUES
 INSERT INTO
     songs (title, artist_id, release_date)
 VALUES
-    ('Love Me Do', 1, '1962-10-05'),
-    ('Satisfaction', 2, '1965-08-20'),
-    ('Jailhouse Rock', 3, '1957-09-24');
+    ('Come Up and Get Me', 1, '2012-10-01'),
+    ('Lil Boy', 1, '2012-10-01'),
+    ('No Love', 1, '2012-10-01'),
+    ('Black Dice', 1, '2012-10-01'),
+    ('World of Dogs', 1, '2012-10-01'),
+    ('Lock Your Doors', 1, '2012-10-01'),
+    ('Whammy', 1, '2012-10-01'),
+    ('Hunger Games', 1, '2012-10-01'),
+    ('Deep Web', 1, '2012-10-01'),
+    ('Stockton', 1, '2012-10-01'),
+    ('Pop', 1, '2012-10-01'),
+    ('Bass Rattle Stars Out the Sky', 1, '2012-10-01'),
+    ('Artificial Death in the West', 1, '2012-10-01');
 
 INSERT INTO
     albums (title, album_cover_url, artist_id, release_date)
 VALUES
     (
-        'Please Please Me',
-        'http://albums/thebeetles/pleasepleaseme.jpg',
+        'Exmilitary',
+        'https://upload.wikimedia.org/wikipedia/en/1/1a/Exmilitary_artwork.png',
         1,
-        '1963-03-22'
+        '2011-04-25'
     ),
     (
-        'Out of Our Heads',
-        'http://albums/therollingstones/outofourheads.jpg',
-        2,
-        '1965-07-30'
+        'No Love Deep Web',
+        'https://upload.wikimedia.org/wikipedia/en/9/9e/No_Love_Deep_Web_artwork.png',
+        1,
+        '2012-10-01'
     ),
     (
-        'Elvis Presley',
-        'http://albums/elvispresley/elvispresley.jpg',
-        3,
-        '1956-03-23'
+        'Government Plates',
+        'https://upload.wikimedia.org/wikipedia/en/9/97/GovernmentPlates.jpg',
+        1,
+        '2013-11-13'
+    ),
+    (
+        'The Powers That B',
+        'https://upload.wikimedia.org/wikipedia/en/b/bd/The_Powers_That_B_cover_art.jpg',
+        1,
+        '2015-03-31'
     );
 
 INSERT INTO
