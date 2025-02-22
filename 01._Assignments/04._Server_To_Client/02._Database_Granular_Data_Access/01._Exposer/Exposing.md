@@ -15,7 +15,7 @@ PostgreSQL was chosen for this task due to its robust support for granular data 
 
 ## Setting Up Local docker env 🐳
 
-First start creating the environment for all needed files (`Dockerfile`, `init.sql` & `docker-compose.yml` ):
+First start creating the environment for the needed two files (`docker-compose.yml` & `init.sql`):
 
 ```bash
 # Just an example
@@ -24,7 +24,9 @@ mkdir Integrator
 cd Integrator
 ```
 
-Within this created environment, you need top copy the folloing files from this repository's filepath: `01._Assignments/04._Server_To_Client/02._Database_Granular_Data_Access/01._Exposer` **Dockerfile, init.sql & docker-compose.yml**.
+Within the created directory, you need top copy the following two files from this repository's filepath `01._Assignments/04._Server_To_Client/02._Database_Granular_Data_Access/01._Exposer`:
+
+**docker-compose.yml & init.sql**.
 
 <br>
 
@@ -37,16 +39,18 @@ docker compose up --build
 # Access the running docker strictdb as user profile: user
 docker exec -it strictdb psql -U user -d strict_music_database
 
-# Access the running docker strictdb as root
-docker exec -it strictdb psql -d strict_music_database
+# Access the running docker strictdb as super-user / postgres
+docker exec -it strictdb psql -U postgres -d strict_music_database
 
 # Terminate the container and delete created volume
 docker compose down -v
 ```
 
+<br>
+
 ## Commands to run
 
-Here is the get down!
+Execute the following commands where the _user-profile_ is set to **user**.
 ```sql
 -- Read from artists but DENIED
 SELECT * FROM artists;
@@ -60,3 +64,5 @@ INSERT INTO artists (artist_name, started_year, origin_country, still_active, we
 -- Insert into artist successfully
 INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url, secret_info) VALUES('MOCK Grips',2011,'DK',FALSE,'https://thirdworlds.net', 'Some secrets');
 ```
+
+## Links

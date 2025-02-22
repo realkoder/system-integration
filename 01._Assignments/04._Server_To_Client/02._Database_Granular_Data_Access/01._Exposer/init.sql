@@ -1,11 +1,8 @@
-CREATE ROLE root WITH LOGIN SUPERUSER CREATEDB CREATEROLE PASSWORD 'admin';
+-- ==============================================
+-- 🎧🎧🎧 SQL init for strict_music_database 🎧🎧🎧
+-- ==============================================
 
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO root;
-
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO root;
-
-GRANT ALL PRIVILEGES ON DATABASE strict_music_database TO root;
-
+-- Creating the tables for strict_music_database
 CREATE TABLE IF NOT EXISTS artists (
     id SERIAL PRIMARY KEY,
     artist_name VARCHAR(255),
