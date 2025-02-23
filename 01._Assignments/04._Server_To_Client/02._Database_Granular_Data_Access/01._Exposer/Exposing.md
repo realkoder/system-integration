@@ -1,8 +1,8 @@
 # 🚫 Exposing A DB with Granular Data Access 🚫
 
-This approach is a dockerized PostgreSQL databasse, where two _user-profiles_ have been configured: **root** and **user**. 
+This approach is a dockerized PostgreSQL databasse, where two _user-profiles_ have been configured: **postgres** and **user**.
 
-The **postgres** profile has full access rights to everything, while the **user** has certain restrictions. These restrictions are based on the most granular level of data access in PostgreSQL, which is at the field attribute level for a given table.
+The **postgres** _user-profile_ has full access rights to all _DDL_ and _DML_, while the **user** has certain restrictions. These restrictions are based on the most granular level of data access in _PostgreSQL_, which is at the field attribute level for a given table.
 
 The _PostgreSQL_ database configured, is named _strict_music_database_, it's straightforward and consists of four tables:
 - **artists** 
@@ -10,11 +10,9 @@ The _PostgreSQL_ database configured, is named _strict_music_database_, it's str
 - **albums**
 - **song_album**.
 
-<br>
+For _user-profile_ **user** there have been made restrictions to accessing the field **secret_info** for **artists** table. 
 
-For the _user-profile_ **user** there have been made restrictions to accessing the field **secret_info** for **artists** table. Try to see how you do **insertions** or **deletions** else way using the **user** _user-profile_? 🔍
-
-<br>
+⭐️ You task is to figure out how you can perform **insertions** or **deletions** in another way when using the **user** _user-profile_? 🔍
 
 ## Why PostgreSQL? 🕵️‍♀️
 
@@ -26,24 +24,22 @@ GRANT and REVOKE control access at the object level (e.g., tables, views), speci
 
 <br>
 
-## Setting Up Local docker env 🐳
+## Start integrating the exposed PostgreSQL
 
+#### 1. Setting Up Local docker env 🐳
 First start creating the environment for the needed two files (`docker-compose.yml` & `init.sql`):
 
-```bash
-# Just an example
-mkdir Integrator
+Either copy the files to your own directory or `git clone https://github.com/realkoder/strict-db-granular-data-access.git`
 
-cd Integrator
-```
-
-Within the created directory, you need top copy the following two files from this repository's filepath `01._Assignments/04._Server_To_Client/02._Database_Granular_Data_Access/01._Exposer`:
-
-**docker-compose.yml & init.sql**.
+🛑 **Within the created directory** 🛑 you need top copy the following two files if you did not `git clone` the project `https://github.com/realkoder/strict-db-granular-data-access`:
+- **docker-compose.yml**
+- **init.sql**
 
 <br>
 
-Now it's time to start the container and interact with it - execute the following commands 🚀
+#### 2. Interact with container 🚀
+
+Execute the following commands:
 
 ```bash
 # Create the PostgreSQL dockerized container and boot it with docker-compose
@@ -55,29 +51,32 @@ docker exec -it strictdb psql -U user -d strict_music_database
 # Access the running docker strictdb as super-user / postgres
 docker exec -it strictdb psql -U postgres -d strict_music_database
 
+# Go to section 3. Query the PostgreSQL
+
 # Terminate the container and delete created volume
 docker compose down -v
 ```
 
 <br>
 
-## Commands to run
+#### 3. Query the PostgreSQL
 
-### 🌟 Execute the following commands where the _user-profile_ is set to `user` 🌟
-> Interact with postgresql docker container by this cmd: `docker exec -it strictdb psql -U user -d strict_music_database`
+#### 🌟 Execute the following commands where the _user-profile_ is set to `user` 🌟
+
+> Interact with postgresql docker container by cmd: `docker exec -it strictdb psql -U user -d strict_music_database`
 
 ```sql
--- Read from artists but DENIED
+-- Try readng from artists -> maybe that's the restriction?
 SELECT * FROM artists;
 
 -- Read from artists successfully (since secret_info is omitted)
 SELECT  id, artist_name, started_year, origin_country, still_active, website_url FROM artists;
 
 -- Insert into artist but DENIED
-INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url) VALUES('MOCK Grips',2011,'DK',FALSE,'https://thirdworlds.net');
+INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url, secret_info) VALUES('SOME ARTIST', 2000, 'DK', FALSE, 'https://some-url.com', 'SOME SECRET');
 
 -- Insert into artist successfully
-INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url, secret_info) VALUES('MOCK Grips',2011,'DK',FALSE,'https://thirdworlds.net', 'Some secrets');
+INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url) VALUES('SOME ARTIST', 2000, 'DK', FALSE, 'https://some-url.com');
 ```
 
 <br>
