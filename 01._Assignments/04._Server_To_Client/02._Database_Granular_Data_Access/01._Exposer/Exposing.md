@@ -15,7 +15,7 @@ For _user-profile_ **user** there have been made restrictions to accessing the f
 
 ---
 
-⭐️ You task is to figure out how you can perform **insertions** or **deletions** in another way when using the **user** _user-profile_? 🔍
+⭐️ You task is to figure out how you can perform **insertions** or **deletions** for the table **artists** in another way when using the **user** _user-profile_? 🔍
 
 ---
 
