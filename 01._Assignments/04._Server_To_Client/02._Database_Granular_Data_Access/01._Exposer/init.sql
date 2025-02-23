@@ -1,8 +1,8 @@
 -- ==============================================
--- 🎧🎧🎧 SQL init for strict_music_database 🎧🎧🎧
+-- 🎧🎧🎧 SQL initialization for strict_music_database 🎧🎧🎧
 -- ==============================================
 
--- Creating the tables for strict_music_database
+-- Creating tables for strict_music_database
 CREATE TABLE IF NOT EXISTS artists (
     id SERIAL PRIMARY KEY,
     artist_name VARCHAR(255),
@@ -40,19 +40,12 @@ CREATE TABLE IF NOT EXISTS song_album (
     FOREIGN KEY (album_id) REFERENCES albums (id)
 );
 
+
 -- ===========================================
--- 💽 💽 💽 inserting data to test with 💽 💽 💽
+-- 💽 💽 💽 Populating tables with some data to interact with 💽 💽 💽
 -- ===========================================
-INSERT INTO
-    artists (
-        artist_name,
-        started_year,
-        origin_country,
-        still_active,
-        website_url,
-        secret_info
-    )
-VALUES
+INSERT INTO artists (artist_name, started_year, origin_country, still_active, website_url, secret_info ) 
+VALUES 
     (
         'Death Grips',
         2008,
@@ -78,9 +71,8 @@ VALUES
         ''
     );
 
-INSERT INTO
-    songs (title, artist_id, release_date)
-VALUES
+INSERT INTO songs (title, artist_id, release_date)
+VALUES 
     ('Come Up and Get Me', 1, '2012-10-01'),
     ('Lil Boy', 1, '2012-10-01'),
     ('No Love', 1, '2012-10-01'),
@@ -95,8 +87,7 @@ VALUES
     ('Bass Rattle Stars Out the Sky', 1, '2012-10-01'),
     ('Artificial Death in the West', 1, '2012-10-01');
 
-INSERT INTO
-    albums (title, album_cover_url, artist_id, release_date)
+INSERT INTO albums (title, album_cover_url, artist_id, release_date)
 VALUES
     (
         'Exmilitary',
@@ -123,12 +114,12 @@ VALUES
         '2015-03-31'
     );
 
-INSERT INTO
-    song_album (song_id, album_id)
+INSERT INTO song_album (song_id, album_id) 
 VALUES
     (1, 1),
     (2, 2),
     (3, 3);
+
 
 -- ==================================================
 -- 👷‍♀️👷‍♀️👷‍♀️ USER CREATION AND GRANULAR DATA ACCESS 👷‍♀️👷‍♀️👷‍♀️
