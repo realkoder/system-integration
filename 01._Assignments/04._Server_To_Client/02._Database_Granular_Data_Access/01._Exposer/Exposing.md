@@ -5,14 +5,19 @@ This approach is a dockerized PostgreSQL databasse, where two _user-profiles_ ha
 The **postgres** _user-profile_ has full access rights to all _DDL_ and _DML_, while the **user** has certain restrictions. These restrictions are based on the most granular level of data access in _PostgreSQL_, which is at the field attribute level for a given table.
 
 The _PostgreSQL_ database configured, is named _strict_music_database_, it's straightforward and consists of four tables:
-- **artists** 
-- **songs** 
+
+- **artists**
+- **songs**
 - **albums**
 - **song_album**.
 
-For _user-profile_ **user** there have been made restrictions to accessing the field **secret_info** for **artists** table. 
+For _user-profile_ **user** there have been made restrictions to accessing the field **secret_info** for **artists** table.
+
+---
 
 ⭐️ You task is to figure out how you can perform **insertions** or **deletions** in another way when using the **user** _user-profile_? 🔍
+
+---
 
 ## Why PostgreSQL? 🕵️‍♀️
 
@@ -27,11 +32,13 @@ GRANT and REVOKE control access at the object level (e.g., tables, views), speci
 ## Start integrating the exposed PostgreSQL
 
 #### 1. Setting Up Local docker env 🐳
+
 First start creating the environment for the needed two files (`docker-compose.yml` & `init.sql`):
 
 Either copy the files to your own directory or `git clone https://github.com/realkoder/strict-db-granular-data-access.git`
 
 🛑 **Within the created directory** 🛑 you need top copy the following two files if you did not `git clone` the project `https://github.com/realkoder/strict-db-granular-data-access`:
+
 - **docker-compose.yml**
 - **init.sql**
 
