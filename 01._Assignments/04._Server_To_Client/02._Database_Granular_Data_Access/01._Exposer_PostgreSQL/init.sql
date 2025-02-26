@@ -144,3 +144,11 @@ GRANT SELECT (id, artist_name, started_year, origin_country, still_active, websi
 
 REVOKE INSERT ON artists FROM "user";
 GRANT INSERT (id, artist_name, started_year, origin_country, still_active, website_url) ON artists TO "user";
+
+-- Adding RLS to make the role = user not able to fetch song if id == 1
+ALTER TABLE songs ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY restrict_specific_song ON songs
+    FOR SELECT
+    TO "user"
+    USING (id <> 1);
