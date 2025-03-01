@@ -88,7 +88,36 @@ INSERT INTO artists (artist_name, started_year, origin_country, still_active, we
 
 <br>
 
-## Links
+## Links and thoughs about other databases
+
+_PostgreSQL_ vs _mysql_ - _MySQL_ does not provide _Row Level Security (RLS)_ like _PostgreSQL_, but can be fixed by using _views_.
+This approach does mean that the db user has to query not the exact table but a view made for the exact table.
+
+Regarding _MongoDB_ there was not a straight way to make a specific document not readable, but for the whole collection constraints could be implemented by using creating a role with _privileges_ and adding that to a specific user.
+
+Also quickly checked with _Redis_ ACLs [Access Control List](https://redis.io/docs/latest/operate/oss_and_stack/management/security/acl/): 
+If using Redis 6.0 or later, Access Control Lists (ACLs) can be used to manage user permissions. 
+Different users can be created with different permissions for various commands, but this won't restrict access to specific key value.
+
+```js
+db.createRole({
+  role: "restrictedSongReader",
+  privileges: [
+    {
+      resource: { db: "strict_music_database", collection: "songs" },
+      actions: ["find"],
+      query: { $and: [{ _id: { $ne: 1 } }] },
+    },
+  ],
+  roles: [],
+});
+
+db.createUser({
+  user: "user",
+  pwd: "user",
+  roles: [{ role: "restrictedSongReader", db: "strict_music_database" }],
+});
+```
 
 Relevant links about how to enable grant and revoking of priviliges + row level security.
 
