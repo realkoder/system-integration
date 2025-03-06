@@ -18,30 +18,38 @@
     <p>Received messages goes below!</p>
     <ul id="messages"></ul>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-      const ws = new WebSocket("ws://localhost:9090");
+      const socket = io();
       const messages = document.getElementById("messages");
 
-      ws.onmessage = function (event) {
+      // Listeners
+      socket.on("message", (socketMessage) => {
         const message = document.createElement("li");
-        const content = document.createTextNode(event.data);
+        const content = document.createTextNode(socketMessage);
         message.appendChild(content);
         messages.appendChild(message);
-      };
+      });
 
+      socket.on("connection-count", (socketMessage) => {
+        const message = document.createElement("li");
+        const content = document.createTextNode(socketMessage);
+        message.appendChild(content);
+        messages.appendChild(message);
+      });
+
+      // Event handlers // Sending data to Server through socketio channel
       function sendMessage(event) {
-        const input = document.getElementById("messageText");
-        const message = JSON.stringify({channel: "", message: input.value})
-        ws.send(message);
-        input.value = "";
         event.preventDefault();
+        const input = document.getElementById("messageText");
+        socket.emit("message", input.value);
+        input.value = "";
       }
 
       function getConnectionCount(event) {
-        const message = JSON.stringify({channel: "connnection-count", message: "Connection count please"})
-        ws.send(message);
-        event.preventDefault();
+        socket.emit("connection-count");
       }
+
     </script>
   </body>
 </html>
