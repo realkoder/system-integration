@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
     io.emit("message", message);
   });
 
-  // connection-count
+  // event connection-count
   socket.on("connection-count", async (message) => {
     console.log(`Received message from the client: ${message}`);
 

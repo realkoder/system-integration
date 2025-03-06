@@ -10,4 +10,4 @@
 
 04b: [Database granular data access](https://github.com/realkoder/system-integration/tree/main/01._Assignments/04._Server_To_Client/02._Database_Granular_Data_Access)
 
-06a: [WebSocket Example]()
+06a: [WebSocket Example](https://github.com/realkoder/system-integration/tree/main/01._Assignments/06._Client_and_Server_Client_to_Client)
