@@ -128,4 +128,8 @@ console.log(decoded);
 
 ## LINKS
 
-[Can I use" provides up-to-date browser support tables for support of front-end web technologies on desktop and mobile web browsers](https://caniuse.com)
+[Can I use provides up-to-date browser support tables for support of front-end web technologies on desktop and mobile web browsers](https://caniuse.com)
+
+[The WebSocket Protocol](https://datatracker.ietf.org/doc/html/rfc6455)
+
+[Differences between Socket.IO and WebSocket](https://stackoverflow.com/questions/10112178/differences-between-socket-io-and-websockets)
