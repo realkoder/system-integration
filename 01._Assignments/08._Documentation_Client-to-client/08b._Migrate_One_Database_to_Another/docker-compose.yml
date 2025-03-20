@@ -1,0 +1,30 @@
+services:
+
+# Connection string: docker exec -it postgresdb psql -U postgres -d strict_music_database
+  postgres:
+    container_name: postgresdb
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: music_database
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+# No Default User: By default, MongoDB does not come with any user accounts or authentication enabled. 
+# Start MongoDB without enabling authentication, anyone can connect to the database without a username or password.
+
+# Connection string: docker exec -it mongodb mongosh
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  postgres_data:
+  mongo_data:

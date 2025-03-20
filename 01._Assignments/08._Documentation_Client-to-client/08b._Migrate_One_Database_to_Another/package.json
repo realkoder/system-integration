@@ -1,0 +1,17 @@
+{
+  "name": "08b._migrate_one_database_to_another",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "mongodbMigration.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "mongodb": "^6.15.0",
+    "pg": "^8.14.1"
+  }
+}
