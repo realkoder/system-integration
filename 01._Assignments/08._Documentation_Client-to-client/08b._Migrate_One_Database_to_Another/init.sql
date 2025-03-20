@@ -1,8 +1,8 @@
 -- ==============================================
--- 🎧🎧🎧 SQL initialization for strict_music_database 🎧🎧🎧
+-- 🎧🎧🎧 SQL initialization for music_database 🎧🎧🎧
 -- ==============================================
 
--- Creating tables for strict_music_database
+-- Creating tables for music_database
 CREATE TABLE IF NOT EXISTS artists (
     id SERIAL PRIMARY KEY,
     artist_name VARCHAR(255),
@@ -129,3 +129,7 @@ CREATE ROLE migrator WITH LOGIN PASSWORD 'migrator';
 
 -- Grant privileges to the new user
 GRANT ALL PRIVILEGES ON DATABASE music_database TO migrator;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO migrator;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO migrator;

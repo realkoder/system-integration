@@ -110,6 +110,17 @@ const danishDate = new Intl.DateTimeFormat("da-dk").format(UTC_DATE);
 
 <br>
 
+## Peer-to-peer
+
+The protocol is BitTorrent
+Tracker: A server that keeps track of peers participating in a torrent swarm.
+
+**Swarm**: The group of peers participating in a torrent.
+
+**Torrent file**: Contains metadata about the content, piece hashes for validation and optionally the tracker URL.
+
+**Block**: The smallest unit of data that can be requested from a peer. Enables parallel downloading out of order.
+
 ## Bonus info
 
 Very nice way to serve html,css,js files for local dev in browser `npx vite`.
@@ -125,6 +136,10 @@ const decoded = atob(encoded);
 console.log(encoded);
 console.log(decoded);
 ```
+
+__Websockets__ & __WebRTC__ where published at the same time.
+
+__Signalling__ when a server connects a client with another client: the stablishment of **peer-to-peer**
 
 ## LINKS
 

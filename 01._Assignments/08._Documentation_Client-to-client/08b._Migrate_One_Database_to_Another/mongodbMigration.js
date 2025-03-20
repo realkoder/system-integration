@@ -8,12 +8,12 @@ const postgresConfig = {
   host: "localhost",
   database: "music_database",
   password: "migrator",
-  port: 5432,
+  port: 5431,
 };
 
 const mongoConfig = {
-  url: "mongodb://localhost:27017", // MongoDB connection URL
-  dbName: "strict_music_database", // MongoDB database name
+  url: "mongodb://localhost:27017",
+  dbName: "music_database",
 };
 
 async function migrateData() {

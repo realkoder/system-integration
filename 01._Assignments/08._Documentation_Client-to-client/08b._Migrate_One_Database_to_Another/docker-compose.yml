@@ -1,11 +1,11 @@
 services:
 
-# Connection string: docker exec -it postgresdb psql -U postgres -d strict_music_database
+# Connection string: docker exec -it postgresdb psql -U migrator -d music_database
   postgres:
     container_name: postgresdb
     image: postgres:latest
     ports:
-      - "5432:5432"
+      - "5431:5432"
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: music_database
