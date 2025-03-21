@@ -3,13 +3,11 @@ import { io } from "socket.io-client";
 
 
 interface Props {
-    startButtonRef: React.RefObject<HTMLButtonElement | null>,
-    hangupButtonRef: React.RefObject<HTMLButtonElement | null>,
-    muteAudButtonRef: React.RefObject<HTMLButtonElement | null>,
     remoteVideoRef: React.RefObject<HTMLVideoElement | null>
 }
 
-const useWebRTC = ({ startButtonRef, hangupButtonRef, muteAudButtonRef, remoteVideoRef }: Props) => {
+const useWebRTC = ({ remoteVideoRef }: Props) => {
+    const isConnectedWithPeerRef = useRef(false);
     const localStreamRef = useRef<MediaStream | null>(null);
     const pcRef = useRef<RTCPeerConnection | null>(null);
     const socketRef = useRef(io("http://localhost:8080", { transports: ["websocket"] }));
@@ -149,6 +147,7 @@ const useWebRTC = ({ startButtonRef, hangupButtonRef, muteAudButtonRef, remoteVi
             if (!candidate) {
                 await pcRef.current.addIceCandidate(null);
             } else {
+                isConnectedWithPeerRef.current = true;
                 await pcRef.current.addIceCandidate(candidate);
             }
         } catch (e) {
@@ -165,11 +164,8 @@ const useWebRTC = ({ startButtonRef, hangupButtonRef, muteAudButtonRef, remoteVi
             localStreamRef.current.getTracks().forEach((track) => track.stop());
             localStreamRef.current = null;
         }
-        startButtonRef.current.disabled = false;
-        hangupButtonRef.current.disabled = true;
-        muteAudButtonRef.current.disabled = true;
     }
-    return { localStreamRef, makeCall, hangup, socketRef };
+    return { localStreamRef, makeCall, hangup, socketRef, isConnectedWithPeerRef };
 }
 
 export default useWebRTC;

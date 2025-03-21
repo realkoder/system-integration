@@ -1,28 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FiVideo, FiVideoOff, FiMic, FiMicOff } from "react-icons/fi";
-import useWebRTC from "./useWebRtc";
+import useWebRTC from "./useWebRTC";
 
 function App() {
-  const startButtonRef = useRef<HTMLButtonElement | null>(null);
-  const hangupButtonRef = useRef<HTMLButtonElement | null>(null);
-  const muteAudButtonRef = useRef<HTMLButtonElement | null>(null);
   const localVideoRef = useRef<HTMLVideoElement | null>(null);
   const remoteVideoRef = useRef<HTMLVideoElement | null>(null);
 
-  useEffect(() => {
-    if (!hangupButtonRef.current || !muteAudButtonRef.current) return;
-    hangupButtonRef.current.disabled = true;
-    muteAudButtonRef.current.disabled = true;
-  }, []);
-
   const [audiostate, setAudio] = useState(false);
 
-  const { localStreamRef, hangup, socketRef } = useWebRTC({
-    startButtonRef,
-    hangupButtonRef,
-    muteAudButtonRef,
-    remoteVideoRef,
-  });
+  const { localStreamRef, hangup, socketRef, isConnectedWithPeerRef } =
+    useWebRTC({
+      remoteVideoRef,
+    });
 
   const startB = async () => {
     try {
@@ -30,12 +19,9 @@ function App() {
         video: true,
         audio: { echoCancellation: true },
       });
-      if (!localVideoRef.current || !startButtonRef.current || !hangupButtonRef.current || !muteAudButtonRef.current) return;
+      if (!localVideoRef.current) return;
 
       localVideoRef.current.srcObject = localStreamRef.current;
-      startButtonRef.current.disabled = true;
-      hangupButtonRef.current.disabled = false;
-      muteAudButtonRef.current.disabled = false;
 
       socketRef.current.emit("message", { type: "ready" });
     } catch (err) {
@@ -83,21 +69,21 @@ function App() {
         <div className="btn">
           <button
             className="btn-item btn-start"
-            ref={startButtonRef}
+            disabled={isConnectedWithPeerRef.current}
             onClick={startB}
           >
             <FiVideo />
           </button>
           <button
             className="btn-item btn-end"
-            ref={hangupButtonRef}
+            disabled={!isConnectedWithPeerRef.current}
             onClick={hangB}
           >
             <FiVideoOff />
           </button>
           <button
             className="btn-item btn-start"
-            ref={muteAudButtonRef}
+            disabled={!isConnectedWithPeerRef.current}
             onClick={muteAudio}
           >
             {audiostate ? <FiMic /> : <FiMicOff />}
