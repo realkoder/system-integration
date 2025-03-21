@@ -7,4 +7,4 @@ This is my example of a simple WebRTC connection beetween peers.
 **Server is simple vanila js express server.**
 
 
-[Been following this for guidiance](https://github.com/khuong291/React-WebRTC)
+[Been following this for guidiance](https://dev.to/eyitayoitalt/develop-a-video-chat-app-with-webrtc-socketio-express-and-react-3jc4)
