@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { FiVideo, FiVideoOff, FiMic, FiMicOff } from "react-icons/fi";
 import useWebRTC from "./useWebRTC";
+import './App.css';
 
 function App() {
   const localVideoRef = useRef<HTMLVideoElement | null>(null);
