@@ -1,14 +1,15 @@
 services:
 
 # Connection string: docker exec -it postgresdb psql -U migrator -d music_database
+# To generate the pgdump.sql file: docker compose exec -T postgres pg_dump -U postgres music_database > pgdump.sql
   postgres:
     container_name: postgresdb
     image: postgres:latest
-    ports:
-      - "5431:5432"
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_DB: music_database
+    ports:
+      - "5431:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
