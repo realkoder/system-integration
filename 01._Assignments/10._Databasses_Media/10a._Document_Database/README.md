@@ -33,5 +33,5 @@ To access the postgresdb container and generate the pg_dump file do the followin
 
 ```bash
 # Ensure that the docker container for postgresdb related to encore poject is running
-docker exec -t 1e260f7c0ec7 pg_dump -U postgres -d auth > pgdump.sql
+docker exec -t <container_ID / name> pg_dump -U postgres -d auth > pgdump.sql
 ```
