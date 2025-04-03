@@ -19,3 +19,19 @@ docker compose exec -T postgres pg_dump -U postgres music_database > pgdump.sql
 
 Another way to document a database in a more visually aproachable way is an ER digram.
 ![ERD music_database](./assets/ERD.png)
+
+---
+
+<br>
+
+---
+
+### Bonus for the DLS assignment with Encore
+
+Using **Encore** as backend microservice oriented framework we get each service with **postresdb** instances running as docker containers.
+To access the postgresdb container and generate the pg_dump file do the following:
+
+```bash
+# Ensure that the docker container for postgresdb related to encore poject is running
+docker exec -t 1e260f7c0ec7 pg_dump -U postgres -d auth > pgdump.sql
+```
