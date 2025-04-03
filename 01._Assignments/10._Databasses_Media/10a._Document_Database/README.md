@@ -18,3 +18,4 @@ docker compose exec -T postgres pg_dump -U postgres music_database > pgdump.sql
 
 
 Another way to document a database in a more visually aproachable way is an ER digram.
+![ERD music_database](./assets/ERD.png)
