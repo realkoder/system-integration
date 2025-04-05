@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:latest
+    # environment:
+    #   POSTGRES_PASSWORD: admin
+    #   POSTGRES_DB: migration_example_database
+    env_file:
+      - .env
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./initdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  postgres_data:
