@@ -15,6 +15,7 @@ When considering payment integration options beyond _Stripe_, it's essential to 
 ### DIY Payment Integration
 
 - **Pros**:
+
   - Full control over the payment process and user experience.
   - Potentially lower transaction fees if using direct bank integrations.
   - Customizable to fit specific business needs and workflows.
@@ -244,7 +245,13 @@ app.post("/api/checkout", async (req, res) => {
 
 ## HURRAY 🥳 STRIPE HAS BEEN IMPLEMENTED AN READY FOR SIGNUP
 
-![Payment was successful](./assets/payment-succesful.png)
+![Payment was successful - postman](./assets/payment-succesful.png)
+
+<br>
+
+**Successfully payments from _Stripe's_ dashboard:**
+
+![Payment was successful - stripe dashboard](./assets/successful-transactions-stripe-dashboard.png)
 
 ---
 
