@@ -11,6 +11,9 @@
 
 .DS_Store
 
+.env.develop
+.env.production
+
 # User-specific files
 *.rsuser
 *.suo

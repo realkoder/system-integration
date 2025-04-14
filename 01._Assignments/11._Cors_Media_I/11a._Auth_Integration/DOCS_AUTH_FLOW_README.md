@@ -27,7 +27,7 @@ Implement _OAuth_ on you own can be challengeing and especially _Apple SSO_ sinc
 
 [How to Setup Sign in with Apple](https://www.kyle-melton.com/blog/2022-02-how-to-setup-sign-in-with-apple)
 
-#### Cons of Using Clerk
+##### Cons of Using Clerk
 
 - Requires significant configuration to migrate away.
 - Webhooks are needed for user control during signup.
@@ -47,8 +47,6 @@ By leveraging _Clerk_ the authentication process will be streamlined ensuring se
 <br>
 
 ## Step by step integration of Clerk auth
-
-### Frontend --> React app
 
 ##### 1. Setup the frontend application - React app using Vite
 
@@ -138,6 +136,8 @@ function App() {
 ```
 
 ## HURRAY 🥳 CLERK HAS BEEN IMPLEMENTED AN READY FOR SIGNUP
+
+---
 
 #### Bonus
 
