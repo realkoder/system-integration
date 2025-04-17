@@ -2,6 +2,7 @@
 
 Chosing _Stripe_ as payment integration due to its robust features and ease of use. _Stripe_ offers a seamless checkout experience with multiple payment methods, including credit cards and digital wallets.
 Its comprehensive API allows for customization, while built-in fraud protection ensures secure transactions. Additionally, _Stripe's_ extensive documentation and support make it an ideal choice for efficient implementation and maintenance.
+[_Stripe_ even accepts mobilepay](https://stripe.com/en-dk/payment-method/mobilepay?utm_campaign=EMEA_DK_en_Google_Search_Brand_Payment-MobilePay_EXA_PHR-21201968310&utm_medium=cpc&utm_source=google&ad_content=697187579990&utm_term=stripe+mobilepay&utm_matchtype=e&utm_adposition=&utm_device=c&gad_source=1&gbraid=0AAAAADKNRO5KbAfQ0oGKXk8X-ehTul-0O&gclid=Cj0KCQjwzYLABhD4ARIsALySuCS68IbdVvw5jv2jv7BcDSGHpj0mwrLVBLsBxabrYjUKaOzpljplcvIaAgT-EALw_wcB)
 
 ## Researching 📖
 
@@ -29,7 +30,7 @@ When considering payment integration options beyond _Stripe_, it's essential to 
 
 <br>
 
-## Step by step integration of Clerk auth
+## Step by step integration of Stripe
 
 #### 1. Register at Stripe
 
