@@ -121,6 +121,71 @@ Tracker: A server that keeps track of peers participating in a torrent swarm.
 
 **Block**: The smallest unit of data that can be requested from a peer. Enables parallel downloading out of order.
 
+---
+
+<br>
+
+## LocalTunnel
+
+**LocalTunnel** is a tool that exposes your local development server to the internet, making it easy to share projects and test webhooks.
+
+### Key Features:
+- **Easy Setup**: Install via npm with `npm install -g localtunnel`.
+- **Custom Subdomains**: Specify a subdomain for easier sharing:
+  
+  ```bash
+  lt --port 8080 -s <subdomain>
+  ```
+
+- **Temporary URLs**: Generated URLs are temporary unless a custom subdomain is used.
+
+### Use Cases:
+- Share local projects with clients or team members.
+- Test webhooks from services like Stripe.
+- Facilitate collaborative development.
+
+LocalTunnel simplifies the process of making local servers accessible online.
+
+---
+
+<br>
+
+### FFMPEG
+
+**FFmpeg** is a powerful open-source multimedia framework that allows you to record, convert, and stream audio and video files. It supports a wide range of formats and codecs, making it an essential tool for developers and content creators working with multimedia content.
+
+#### Key Features:
+
+- **Format Conversion**: FFmpeg can convert multimedia files between different formats, enabling compatibility across various platforms and devices.
+- **Video and Audio Processing**: It provides tools for editing, filtering, and manipulating audio and video streams, including resizing, cropping, and applying effects.
+- **Streaming**: FFmpeg supports real-time streaming of audio and video over networks, making it suitable for live broadcasting applications.
+- **Command-Line Interface**: FFmpeg is primarily used through a command-line interface, allowing for automation and integration into scripts and applications.
+
+#### Installation
+
+You can easily install FFmpeg on macOS using Homebrew with the following command:
+
+```bash
+brew install ffmpeg
+```
+
+Command to work on a video MPEG-DASH
+
+```bash
+ffmpeg -i input.mp4 \
+-map 0:v -map 0:a -b:v:0 200k -s:v:0 426x240 -profile:v:0 baseline -b:a:0 48k \
+-map 0:v -map 0:a -b:v:1 400k -s:v:1 640x360 -profile:v:1 baseline -b:a:1 64k \
+-map 0:v -map 0:a -b:v:2 800k -s:v:2 854x480 -profile:v:2 main     -b:a:2 96k \
+-map 0:v -map 0:a -b:v:3 1200k -s:v:3 960x540 -profile:v:3 main    -b:a:3 96k \
+-map 0:v -map 0:a -b:v:4 1800k -s:v:4 1280x720 -profile:v:4 high   -b:a:4 128k \
+-map 0:v -map 0:a -b:v:5 2500k -s:v:5 1920x1080 -profile:v:5 high  -b:a:5 160k \
+-f dash playlist.mpd
+```
+
+---
+
+<br>
+
 ## Bonus info
 
 Very nice way to serve html,css,js files for local dev in browser `npx vite`.
@@ -137,9 +202,11 @@ console.log(encoded);
 console.log(decoded);
 ```
 
-__Websockets__ & __WebRTC__ where published at the same time.
+**Websockets** & **WebRTC** where published at the same time.
 
-__Signalling__ when a server connects a client with another client: the stablishment of **peer-to-peer**
+**Signalling** when a server connects a client with another client: the stablishment of **peer-to-peer**
+
+[Iana MIMEtypes list](https://www.iana.org/assignments/media-types/media-types.xhtml)
 
 ## LINKS
 

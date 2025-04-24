@@ -14,6 +14,8 @@
 .env.develop
 .env.production
 
+videos
+
 # User-specific files
 *.rsuser
 *.suo
