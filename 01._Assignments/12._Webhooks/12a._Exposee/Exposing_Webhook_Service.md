@@ -1,0 +1,77 @@
+# 12a Expose and Integrate with a Webhook System
+
+The Webhook system is for clients to hook on to get updated in recents news from Reddit Channels.
+
+## Event types
+
+The event types can be in following formats:
+
+```typescript
+type TEventType = "PROGRAMMING" | "HOOROR" | "AI";
+```
+
+---
+
+<br>
+
+## Info about configuring express app with TypeScript, Nodemon & ESM
+
+_NodeJS_ RESTAPI backend served by _express_.
+
+So I wanted to have the following setup:
+
+- _nodeJS_ served with `express`
+- Using `ESM modules` instead of `commonjs`
+- Configured with `typescript`
+- Dev mode using `nodemon` for live reloading based on codechanges.
+
+---
+
+Experienced a lot of issues configuring the developer environment since _TypeScript_ is precompiled and interupting nodemon.
+Finally managed to do all the config enabling `typescript` with `ESM modules` and live reload by `nodemon`.
+
+Got this error a lot `Object.defineProperty(exports, "__esModule", { value: true }); ReferenceError: exports is not defined in ES module scope` which was related to the use of ESM modules instead of commonJS.
+
+Also followed this guide https://webdev852.medium.com/node-typescript-app-with-nodemon-and-type-module-3e25bfcaa8b0 but took me a while to figure out that the `tsconfig.json` was corrupt since it did then spell `compilerOptions` correctly, and therefor the guide did'nt work either 😭😭😭
+
+After a lot of debugging this was the golden way to create the whole codebase with typescript, ESM modules, express, cors, nodemon:
+
+Config with typescript:
+
+```bash
+mkdir backend-app
+
+cd backend-app
+
+npm init -y
+
+npm install express cors @types/cors @types/express @types/node nodemon ts-node typescript
+```
+
+Add following to `package.json` --> `"type": "module"` & `"dev": "nodemon --config nodemon.json"`
+
+Add following tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "module": "ESNext", // or "ES2020"
+    "esModuleInterop": true,
+    "target": "es2021",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "lib": ["es2021"]
+}
+```
+
+Add following nodemon.json
+
+```json
+{
+  "watch": ["src"],
+  "ext": "ts",
+  "exec": "node --loader ts-node/esm ./src/app.ts"
+}
+```
