@@ -1,0 +1,9 @@
+services:
+  webhook-app:
+    image: ghcr.io/realkoder/sys-int-webhook-app:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./assets:/app/assets
+    environment:
+      - NODE_ENV=production

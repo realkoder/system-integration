@@ -9,6 +9,9 @@
 
 .vite
 
+.env
+.env.linode
+
 .DS_Store
 
 .env.develop

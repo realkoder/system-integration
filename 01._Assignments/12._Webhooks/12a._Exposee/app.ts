@@ -9,6 +9,10 @@ app.use(express.json());
 
 type TEventType = "PROGRAMMING" | "HORROR" | "AI";
 
+app.get("/test", (req, res) => {
+    res.send({ data: "Hello from server xD" });
+})
+
 function getHooksFilePath(eventType: TEventType) {
     switch (eventType) {
         case 'AI':
