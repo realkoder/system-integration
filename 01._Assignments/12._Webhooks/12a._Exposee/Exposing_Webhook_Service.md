@@ -1,20 +1,68 @@
-# 12a Expose and Integrate with a Webhook System
+# 12a Expose and Integrate with a Webhook System 🕸️ 🎣 🕸️
 
-The Webhook system is for clients to hook on to get updated in recents news from Reddit Channels.
+The **Webhook system** is for clients to hook on to get real time updates in mocked payment scenarios for a monthly subsciption payment process.
+**Expect to receive a payload every minute.**
 
-## Event types
+### Payload
 
-The event types can be in following formats:
+The **payload** to expect for the webhook will be in the following format:
 
 ```typescript
-type TEventType = "PROGRAMMING" | "HOOROR" | "AI";
+interface IPaymentPayload {
+  id: string;
+  type: "SUCCEEDED" | "DENIED" | "PENDING" | "FAILED";
+  created: Date;
+  data: {
+    id: string;
+    subscription_id: string;
+    created: Date;
+    payment_method: "Paypal" | "MobilePay" | "ApplePay" | "CreditCard" | "BankTransfer";;
+  };
+  request: {
+    id: string;
+    idempotency_key: string;
+  };
+}
 ```
+
+## How to get hooked 🎣
+
+**1. Setup a POST endpoint to receive post requests with BODY: `payload: IPaymentPayload`**
+
+```javascript
+app.post("/my-webhook-url", (req, res) => {
+  const payload = req.body;
+
+  // Implement the business logic using the payload
+
+  res.status(200).send({ status: "ok" });
+});
+```
+
+**2. Ensure your service is running, then expose the PORT for your service through Localtunnel or similar**
+
+```bash
+# values could be PORT: 8080, SUBDOMAIN: integrating-webhook
+lt --port PORT -s YOUR_SUBDOMAIN
+```
+
+**3. Create a POST request to `https://webhook.realkoder.com/register` containing a BODY like below to attach you endpoint to the payment webhook**
+
+```javascript
+fetch("https://webhook.realkoder.com/register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ webhookCallbackUrl: "Hello you have been webhooked" }),
+});
+```
+
+## HURRAY 🥳 YOU HAVE HOOKED THE WEBHOOK 🕸️ 🎣 🕸️
 
 ---
 
 <br>
 
-### Following section is addon regarding docs for deployment and configuring codebase with TS and ESM
+# Additional documentation on deploying and configuring the codebase with TS & ESM
 
 ## Deployment
 
@@ -72,6 +120,7 @@ Add the following to `/etc/nginx/nginx.conf` inside the _http_ section:
 ```
 
 When `/etc/nginx/nginx.conf` have been updated _nginx_ have to be restarted to enable new configs:
+
 ```bash
 # Always check nginx.conf is valid
 nginx -t
@@ -82,6 +131,7 @@ systemctl restart nginx
 ---
 
 **PUSHING DOCKER IMAGE TO GHCR FROM LOCAL DEV ENV**
+
 ```bash
 docker build --platform linux/amd64 -f Dockerfile.prod -t ghcr.io/realkoder/sys-int-webhook-app:latest .
 
@@ -91,6 +141,7 @@ docker push ghcr.io/realkoder/sys-int-webhook-app:latest
 ---
 
 Add the following `docker-compose.yml` file to _linode ubuntu vm_:
+
 ```yml
 services:
   webhook-app:
@@ -104,6 +155,7 @@ services:
 ```
 
 **DOCKER ghcr.io LOGIN**
+
 ```bash
 docker login ghcr.io -u USERNAME --pasword GHCR_TOKEN
 ```

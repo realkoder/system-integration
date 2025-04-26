@@ -5,11 +5,13 @@ const PORT = process.env.PORT ?? 9090;
 
 app.use(express.json());
 
-app.post("/hook-me-up", (req, res) => {
-  console.log("WEE HAVE BEEN CALLED");
-  console.log("RECEIVED BODE", req.body);
+app.post("/my-webhook-url", (req, res) => {
+  const payload = req.body;
+  
+  // Your logic making use of paymentPayload
+  console.log("RECEIVED PAYLOAD", payload);
 
-  res.send({ status: "OK" });
+  res.status(200).send({ status: "ok" });
 });
 
 app.listen(PORT, console.log("Server started listening on port", PORT));
