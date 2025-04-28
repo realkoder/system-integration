@@ -3,5 +3,5 @@
         "./"
     ],
     "ext": "ts",
-    "exec": "node --loader ts-node/esm ./app.ts"
+    "exec": "node --loader ts-node/esm ./src/app.ts"
 }

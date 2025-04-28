@@ -33,7 +33,7 @@ interface IPaymentPayload {
 app.post("/my-webhook-url", (req, res) => {
   const payload = req.body;
 
-  // Implement the business logic using the payload
+  // Implement your business logic to use the payload
 
   res.status(200).send({ status: "ok" });
 });

@@ -1,5 +1,5 @@
 # docker build -f Dockerfile.prod -t webhook-app .
-# docker run -p 8080:8080 webhook-app
+# docker run --network host -p 8080:8080 webhook-app
 FROM node:16-alpine AS build
 
 WORKDIR /app
