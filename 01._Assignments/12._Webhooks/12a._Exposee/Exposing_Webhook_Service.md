@@ -1,6 +1,6 @@
 # 12a Expose and Integrate with a Webhook System 🕸️ 🎣 🕸️
 
-The **Webhook system** is for clients to hook on to get real time updates in mocked payment scenarios for a monthly subsciption payment process.
+The **Webhook system** is for clients to hook on to get real time updates with mocked payment scenarios for a monthly subsciption payment process.
 **Expect to receive a payload every minute.**
 
 ### Payload
