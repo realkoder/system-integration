@@ -130,9 +130,10 @@ Tracker: A server that keeps track of peers participating in a torrent swarm.
 **LocalTunnel** is a tool that exposes your local development server to the internet, making it easy to share projects and test webhooks.
 
 ### Key Features:
+
 - **Easy Setup**: Install via npm with `npm install -g localtunnel`.
 - **Custom Subdomains**: Specify a subdomain for easier sharing:
-  
+
   ```bash
   lt --port 8080 -s <subdomain>
   ```
@@ -140,6 +141,7 @@ Tracker: A server that keeps track of peers participating in a torrent swarm.
 - **Temporary URLs**: Generated URLs are temporary unless a custom subdomain is used.
 
 ### Use Cases:
+
 - Share local projects with clients or team members.
 - Test webhooks from services like Stripe.
 - Facilitate collaborative development.
@@ -181,6 +183,59 @@ ffmpeg -i input.mp4 \
 -map 0:v -map 0:a -b:v:5 2500k -s:v:5 1920x1080 -profile:v:5 high  -b:a:5 160k \
 -f dash playlist.mpd
 ```
+
+---
+
+<br>
+
+## GraphQL
+
+GraphQL is a query language for APIs and a runtime for executing those queries with your existing data. It provides a more efficient, powerful, and flexible alternative to RESTful APIs.
+It fixes **underfetching & overfetching**
+
+1. Query
+
+```graphql
+{
+  user(id: "1") {
+    name
+    email
+  }
+}
+```
+
+2. mutation
+
+```graphql
+mutation {
+  createUser(name: "John Doe", email: "john@example.com") {
+    id
+    name
+  }
+}
+```
+
+3. Subscription
+
+```graphql
+subscription {
+  messageSent {
+    id
+    content
+    sender {
+      name
+    }
+  }
+}
+```
+
+![Github GraphQL](./images/github-graphql-repos.png)
+_Github Graphql repos_
+
+---
+
+![Variables usage for issues](./images/github-graphql-variable-usage-for-issues.png)
+_Github Graphql variables usage for issues_
 
 ---
 

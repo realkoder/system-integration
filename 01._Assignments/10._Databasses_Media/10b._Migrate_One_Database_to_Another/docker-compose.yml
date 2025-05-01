@@ -17,6 +17,8 @@ services:
 # No Default User: By default, MongoDB does not come with any user accounts or authentication enabled. 
 # Start MongoDB without enabling authentication, anyone can connect to the database without a username or password.
 
+# Mongodbdump gen: docker exec -it mongodb mongodump --db your_database_name --out /data/db/dump
+
 # Connection string: docker exec -it mongodb mongosh
   mongodb:
     container_name: mongodb
