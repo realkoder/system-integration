@@ -28,11 +28,21 @@ This guide outlines the steps to migrate data from a _PostgreSQL_ database to a 
 
 5. **Verify Data in MongoDB**:
    Connect to the MongoDB container and verify that the data has been migrated successfully:
+
    ```bash
    docker exec -it mongodb mongosh
+
+   ```
+
+6. **Take down docker-compose**:
+   Stop running containers and can delete all
+   ```bash
+   docker compose down --rmi all --remove-orphans
    ```
 
 ---
+
+Generate a dumpfile for _mongoodb_:
 
 ```bash
 docker exec -it mongodb mongodump --db your_database_name --out /data/db/dump

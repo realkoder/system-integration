@@ -52,7 +52,7 @@ lt --port PORT -s YOUR_SUBDOMAIN
 fetch("https://webhook.realkoder.com/register", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ webhookCallbackUrl: "Hello you have been webhooked" }),
+  body: JSON.stringify({ webhookCallbackUrl: "https://your-url.com/my-webhook-url" }),
 });
 ```
 
