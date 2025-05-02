@@ -37,7 +37,7 @@ CURL is used for that:
 curl -X POST https://webhoob20250501214221-cad2cdb4hncsg6bu.northeurope-01.azurewebsites.net/api/webhooks \
 -H "Content-Type: application/json" \
 -d '{
-  "callbackUrl": "https://example.com/webhook",
+  "callbackUrl": "https://integrator.loca.lt/webhook",
   "eventTypes": ["PaymentInitiated", "PaymentCompleted"]
 }'
 ```
