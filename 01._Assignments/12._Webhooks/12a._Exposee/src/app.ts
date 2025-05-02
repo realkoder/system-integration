@@ -126,6 +126,24 @@ app.post("/register", async (req, res) => {
     return;
 });
 
+app.get("/ping", (req, res) => {
+    const urls = getWebhooksUrls();
+
+    if (urls.length === 0) {
+        res.status(200).send({ data: "No webhooks to ping" });
+        return;
+    }
+    console.log("Sending to all registered webhooks.");
+    urls.forEach(async (url) => {
+        const couldPing = await ping(url);
+        if (!couldPing) {
+            unRegisterWebhook(url);
+        }
+    });
+    res.status(200).send({ data: "Pinged all webhooks" });
+    return;
+});
+
 // =======================================
 // ENABLING THE INTERVAL FOR MOCK WEBHOOK
 // =======================================

@@ -52,8 +52,16 @@ lt --port PORT -s YOUR_SUBDOMAIN
 fetch("https://webhook.realkoder.com/register", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ webhookCallbackUrl: "https://your-url.com/my-webhook-url" }),
+  body: JSON.stringify({
+    webhookCallbackUrl: "https://your-url.com/my-webhook-url",
+  }),
 });
+```
+
+**4. PINGING Emit a GET request to `https://webhook.realkoder.com/ping` to get a ping for all attached webhooks**
+
+```javascript
+fetch("https://webhook.realkoder.com/ping");
 ```
 
 ## HURRAY 🥳 YOU HAVE HOOKED THE WEBHOOK 🕸️ 🎣 🕸️
