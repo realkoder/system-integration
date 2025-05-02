@@ -31,7 +31,21 @@ _Server is running and exposed with localtunnel_
 
 ## 5. Register the endpoint `/webhook`
 
-I used postman for that.
+CURL is used for that:
+
+```bash
+curl -X POST https://webhoob20250501214221-cad2cdb4hncsg6bu.northeurope-01.azurewebsites.net/api/webhooks \
+-H "Content-Type: application/json" \
+-d '{
+  "callbackUrl": "https://example.com/webhook",
+  "eventTypes": ["PaymentInitiated", "PaymentCompleted"]
+}'
+```
+
+_Register with curl_
+![Register with curl](./images/CURL-register.png)
+
+_Could also be with postman_
 ![Register endpoint with Postman](./images/postman-register-webhook.png)
 
 ## 6. Ping webhook to trigger
