@@ -12,7 +12,7 @@ def root():
     return { "data": "Hello world" }    
 
 # Accepts a file and transform the data to JSON which is returned
-@app.post('/upload/')
+@app.post('/upload')
 async def create_upload_file(file: UploadFile = File(...)):
     if file.filename.endswith(('.txt', '.yaml', '.xml', '.yml', '.json')):
         uploads_dir = 'uploads'
