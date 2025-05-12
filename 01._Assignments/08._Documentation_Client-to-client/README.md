@@ -1,6 +1,6 @@
 # WEBRTC
 
-_@Meta-Llama-3.1-70B Explain me why I can use Firebase for webrtc stun turn and all that?\_
+_@Meta-Llama-3.1-70B Explain me why I can use Firebase for webrtc stun turn and all that?_
 
 **Firebase** can be used for WebRTC **STUN/TURN** servers because of its Firebase Cloud Functions and Firebase Realtime Database capabilities.
 
