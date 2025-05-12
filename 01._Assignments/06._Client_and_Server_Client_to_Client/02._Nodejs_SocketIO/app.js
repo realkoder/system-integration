@@ -4,7 +4,6 @@ import { createServer } from "node:http";
 
 // This example is based on Socket.IO own docs: https://socket.io/docs/v4/tutorial/step-3
 
-
 const app = express();
 
 const PORT = process.env.PORT || 8080;
