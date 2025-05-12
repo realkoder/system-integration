@@ -1,4 +1,4 @@
-# 13a GraphQL
+# 📈 13a GraphQL 📉
 
 # Graphql
 
@@ -84,7 +84,7 @@ server.listen().then(({ url }) => {
 
 <br>
 
-### WHat is resolvers
+### What is resolvers 👷‍♀️
 
 In _GraphQL_, resolvers are functions that are responsible for returning the data for a specific field in your schema either for `Query, Mutation or Subscription`. They act as the bridge between the _GraphQL_ queries and the underlying data sources, such as databases, APIs, or other services.
 
@@ -94,7 +94,7 @@ Whenever a type has a field that is more complex than a simple scalar type like 
 
 <br>
 
-# Test the Graphql with Postman
+# Test the Graphql with Postman 📬
 
 Follow these steps to test your GraphQL API using Postman:
 
