@@ -24,7 +24,8 @@ This guide outlines the steps to migrate data from a _PostgreSQL_ database to a 
    ```
 
 4. **Migrate Data to MongoDB**:
-   Use a migration tool or script to read the `pgdump.sql` file and insert the data into MongoDB. This step may require custom scripting depending on your data structure.
+   Execute the `mongoDBMigration.js` script to migrate the data from _PostgreSQL_ to _MondgoDB_.
+
 
 5. **Verify Data in MongoDB**:
    Connect to the MongoDB container and verify that the data has been migrated successfully:
@@ -39,6 +40,8 @@ This guide outlines the steps to migrate data from a _PostgreSQL_ database to a 
    ```bash
    docker compose down --rmi all --remove-orphans
    ```
+
+<br>
 
 ---
 

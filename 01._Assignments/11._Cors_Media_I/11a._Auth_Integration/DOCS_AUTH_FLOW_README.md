@@ -108,7 +108,7 @@ createRoot(document.getElementById("root")!).render(
 
 ##### 5. Add UI
 
-_Clerk_ comes with prebuilt control components\_
+_Clerk_ comes with prebuilt control components
 
 `<SignedIn>`: Children of this component **can only be seen while signed in**.
 `<SignedOut>`: Children of this component **can only be seen while signed out**.
@@ -150,9 +150,15 @@ To add **OAUTH SSO** it has to be choosen in the Clerk Dashboard, navigate to th
 ## Relevant links
 
 [Clerk Docs](https://clerk.com/docs/quickstarts/react)
+
 [Betterauth Docs](https://www.better-auth.com/docs/introduction)
+
 [DIY - Secure Your Node.js and Express.js API with JWT Authentication](https://medium.com/@sahilattar87860/secure-your-node-js-and-express-js-api-with-jwt-authentication-f25f1ebc4435)
+
 [AUTH0](https://auth0.com/?utm_source=google&utm_campaign=emea_nordics_dnk_all_ciam-all_dg-ao_auth0_search_google_text_kw_Brand_utm2&utm_medium=cpc&utm_id=aNK4z000000UE3JGAW&gad_source=1&gbraid=0AAAAACmv60VBSnHVdjdNWd-bUppmUH8ib&gclid=EAIaIQobChMI2P6j1f_XjAMVmpmDBx1ufj0XEAAYASAAEgIL3_D_BwE)
+
 [Firebase Authentication](https://firebase.google.com/docs/auth)
+
 [Okta](https://www.okta.com)
+
 [KeyCloak](https://www.keycloak.org)
