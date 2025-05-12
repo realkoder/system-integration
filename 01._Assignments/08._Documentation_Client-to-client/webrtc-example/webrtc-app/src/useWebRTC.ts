@@ -6,6 +6,13 @@ interface Props {
     remoteVideoRef: React.RefObject<HTMLVideoElement | null>
 }
 
+interface IIceCandidateMessage {
+    type: string;
+    candidate: null | string;
+    sdpMid: null | string;
+    sdpMLineIndex: null | number;
+}
+
 const useWebRTC = ({ remoteVideoRef }: Props) => {
     const isConnectedWithPeerRef = useRef(false);
     const localStreamRef = useRef<MediaStream | null>(null);
@@ -66,19 +73,25 @@ const useWebRTC = ({ remoteVideoRef }: Props) => {
     async function makeCall() {
         try {
             pcRef.current = new RTCPeerConnection(configuration);
-            pcRef.current.onicecandidate = (e) => {
+            pcRef.current.onicecandidate = (iceEvent) => {
                 const message: { type: string; candidate?: string; sdpMid?: string; sdpMLineIndex?: number } = {
                     type: "candidate",
                 };
-                if (e.candidate) {
-                    message.candidate = e.candidate.candidate;
-                    message.sdpMid = e.candidate.sdpMid ?? undefined;
-                    message.sdpMLineIndex = e.candidate.sdpMLineIndex ?? undefined;
+                if (iceEvent.candidate) {
+                    message.candidate = iceEvent.candidate.candidate;
+                    message.sdpMid = iceEvent.candidate.sdpMid ?? undefined;
+                    message.sdpMLineIndex = iceEvent.candidate.sdpMLineIndex ?? undefined;
                 }
                 socketRef.current.emit("message", message);
             };
 
-            pcRef.current.ontrack = (e) => (remoteVideoRef.current.srcObject = e.streams[0]);
+            pcRef.current.ontrack = (e) => {
+                if (remoteVideoRef.current === null) {
+                    console.error("RemoteVideoRef is null - cant establish WEBRTC")
+                    return
+                }
+                remoteVideoRef.current.srcObject = e.streams[0]
+            };
 
             if (localStreamRef.current) {
                 localStreamRef.current.getTracks().forEach((track) => {
@@ -102,20 +115,44 @@ const useWebRTC = ({ remoteVideoRef }: Props) => {
         }
         try {
             pcRef.current = new RTCPeerConnection(configuration);
-            pcRef.current.onicecandidate = (e) => {
-                const message = {
+            pcRef.current.onicecandidate = (iceEvent) => {
+                const message: IIceCandidateMessage = {
                     type: "candidate",
                     candidate: null,
+                    sdpMid: null,
+                    sdpMLineIndex: null
                 };
-                if (e.candidate) {
-                    message.candidate = e.candidate.candidate;
-                    message.sdpMid = e.candidate.sdpMid;
-                    message.sdpMLineIndex = e.candidate.sdpMLineIndex;
+                if (iceEvent.candidate) {
+                    message.candidate = iceEvent.candidate.candidate;
+                    message.sdpMid = iceEvent.candidate.sdpMid;
+                    message.sdpMLineIndex = iceEvent.candidate.sdpMLineIndex;
                 }
                 socketRef.current.emit("message", message);
             };
-            pcRef.current.ontrack = (e) => (remoteVideoRef.current.srcObject = e.streams[0]);
-            localStreamRef.current.getTracks().forEach((track) => pcRef.current.addTrack(track, localStreamRef.current));
+
+            // This is where we handle the incomming streams of data such as video or audio from other RTC participant(s)
+            pcRef.current.ontrack = (rtcTrackEvent) => {
+                if (remoteVideoRef.current != null) {
+                    remoteVideoRef.current.srcObject = rtcTrackEvent.streams[0]
+                } else {
+                    console.error("remoteVideoRef is null - could not handle incoming stream")
+                }
+            };
+
+            if (localStreamRef.current === null) {
+                console.log("localStreamRef.current is null - offer is not handled");
+                return;
+            }
+
+            localStreamRef.current.getTracks().forEach((track) => {
+                if (pcRef.current === null || localStreamRef.current === null) {
+                    console.error(`pcRef.current is null ${pcRef.current === null} - offer could not be handled`)
+                    console.error(`localStreamRef.current is null ${localStreamRef.current === null} - offer could not be handled`)
+                    return;
+                }
+                pcRef.current.addTrack(track, localStreamRef.current)
+            });
+
             await pcRef.current.setRemoteDescription(offer);
 
             const answer = await pcRef.current.createAnswer();
