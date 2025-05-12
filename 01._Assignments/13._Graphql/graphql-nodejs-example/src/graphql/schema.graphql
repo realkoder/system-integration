@@ -52,4 +52,7 @@ type Mutation {
 type Subscription {
     "Updates when a new book has been added"
     bookAdded: Book
+    
+    "Updates when a book is deleted"
+    bookDeleted: Book
 }

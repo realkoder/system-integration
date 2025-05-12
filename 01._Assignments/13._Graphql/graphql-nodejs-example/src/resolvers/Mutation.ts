@@ -76,8 +76,12 @@ function deleteBook(parent: any, args: any, context: any, info: any) {
     if (findIndex === -1) {
         throw new ApolloError(`Book not found with ID: ${providedBookId}`, 'BOOK_NOT_FOUND');
     }
-
+    const deletedBook = db.books.find(book => book.id === providedBookId);
+    
     db.books.splice(findIndex, 1);
+
+    pubsub.publish('BOOK_DELETED', { bookDeleted: deletedBook });
+    
     return {
         message: `Book with ID: ${providedBookId} deleted successfully.`
     };

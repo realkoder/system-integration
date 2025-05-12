@@ -178,6 +178,16 @@ mutation createBook {
 }
 ```
 
+Delete a book:_
+
+```graphql
+mutation deleteBook {
+    deleteBook(id: "4") {
+        message
+    }
+}
+```
+
 ---
 
 ### Example Subscription
