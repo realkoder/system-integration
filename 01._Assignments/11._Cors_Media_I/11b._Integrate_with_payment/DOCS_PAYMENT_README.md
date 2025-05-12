@@ -51,6 +51,8 @@ touch app.js .env
 
 Ensure that using **ES modules** in `package.json` → `"type": "module",`
 
+---
+
 ##### 2. Installing packages
 
 Install the following packages by npm:
@@ -58,6 +60,8 @@ Install the following packages by npm:
 ```bash
 npm install express cors body-parser dotenv stripe --save
 ```
+
+---
 
 ##### 3. Setup the backend application - Express server
 
@@ -96,6 +100,8 @@ app.listen(PORT, () => {
 });
 ```
 
+---
+
 ##### 4. Add bootup script
 
 Ensure to add the `dev` script for allowing bootup by `npm run dev`:
@@ -106,6 +112,8 @@ Ensure to add the `dev` script for allowing bootup by `npm run dev`:
     "dev": "nodemon index.js" // add this line
   },
 ```
+
+---
 
 ##### 5. Add checkout route
 
@@ -163,6 +171,8 @@ app.post("/api/checkout", async (req, res) => {
 });
 ```
 
+---
+
 ##### 5. Test checkout with Postman
 
 To test our application, we will open Postman and enter the following details:
@@ -190,6 +200,8 @@ To test our application, we will open Postman and enter the following details:
 
 ![Error with checkout](./assets/error-checkout.png)
 
+---
+
 ##### 6. Setup test env for Stripe integration
 
 To rely on multiple environments with `dotenv` we need to install [dotenvx](https://github.com/dotenvx/dotenvx)
@@ -209,11 +221,14 @@ Now update the `dev` script to use `.env.develop`:
   },
 ```
 
+---
+
 ##### OKAY That did not solve anything...
 
 Found this on stackoverflow [sending-credit-card-numbers-directly-to-the-stripe-api..](https://stackoverflow.com/questions/76583126/sending-credit-card-numbers-directly-to-the-stripe-api-is-generally-unsafe-we-s)
 
 [Direct charges docs](https://docs.stripe.com/payments/charges-api/connect)
+
 Since we are just testing an getting an error when following the guide see in links section, then we can just get away with our test case by the below `checkout()`:
 
 ```javascript
@@ -244,7 +259,9 @@ app.post("/api/checkout", async (req, res) => {
 });
 ```
 
-## HURRAY 🥳 STRIPE HAS BEEN IMPLEMENTED AN READY FOR SIGNUP
+---
+
+## HURRAY 🥳 STRIPE HAS BEEN IMPLEMENTED
 
 ![Payment was successful - postman](./assets/payment-succesful.png)
 
@@ -261,7 +278,11 @@ app.post("/api/checkout", async (req, res) => {
 ## Relevant links
 
 [Add payments feature in your application using Node.js/Express and Stripe](https://dev.to/nishimweprince/add-payments-feature-in-your-application-using-nodejsexpress-and-stripe-305a)
+
 [Stripe - Checkout one time payments](https://github.com/stripe-samples/checkout-one-time-payments)
+
 [Paypal docs](https://developer.paypal.com/home/)
+
 [Paypal docs](https://developer.paypal.com/home/)
+
 [DIY payment in nodejs - paystack-api](https://dev.to/kizito007/creating-a-simple-payment-system-in-nodejs-and-mongodb-using-paystack-a-step-by-step-guide-2mc4)
