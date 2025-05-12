@@ -2,7 +2,27 @@ import db from "../database/data.js";
 import { ApolloError } from "apollo-server";
 import pubsub from "../database/pubsubUtil.js";
 
-function createBook(parent: any, args: any, context: any, info: any) {
+interface IBookMutation {
+    title: string;
+    authorId: string;
+    releaseYear: number;
+}
+
+function createAuthor(poarent: any, args: {name: string}, context: any, info: any) {
+    const providedAuthorName = args.name;
+    const nextId = db.authors[db.authors.length - 1].id + 1;
+
+    const newAuthor = {
+        id: nextId,
+        name: providedAuthorName,
+    }
+
+    db.authors.push(newAuthor);
+
+    return newAuthor
+}
+
+function createBook(parent: any, args: IBookMutation, context: any, info: any) {
     const providedAuthorId = Number(args.authorId);
     const foundAuthor = db.authors.find((author) => author.id === providedAuthorId);
     if (!foundAuthor) {
@@ -19,9 +39,7 @@ function createBook(parent: any, args: any, context: any, info: any) {
     };
     db.books.push(newBook);
 
-
     pubsub.publish('BOOK_ADDED', { bookAdded: newBook });
-
 
     return newBook;
 }
@@ -66,6 +84,7 @@ function deleteBook(parent: any, args: any, context: any, info: any) {
 }
 
 export default {
+    createAuthor,
     createBook,
     updateBook,
     deleteBook,

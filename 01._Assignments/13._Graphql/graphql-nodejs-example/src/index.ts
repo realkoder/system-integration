@@ -12,13 +12,12 @@ import express from 'express';
 const app = express();
 const httpServer = createServer(app);
 
-import fs  from 'fs';
+import fs from 'fs';
 import path from 'path';
 
 const schemaPath = path.resolve('src/graphql/schema.graphql');
 const schemaFile = fs.readFileSync(schemaPath, 'utf8');
 const typeDefs = gql(schemaFile);
-
 
 import Query from './resolvers/Query.js';
 import Mutation from './resolvers/Mutation.js';
@@ -26,16 +25,16 @@ import Subscription from './resolvers/Subscription.js';
 import Book from "./resolvers/Book.js";
 import Author from "./resolvers/Author.js";
 
-
 const resolvers = {
-    Query,
-    Mutation,
-    Subscription,
-
-    Book,
-    Author
+  // Operations
+  Query,
+  Mutation,
+  Subscription,
+  
+  // Object types
+  Book,
+  Author
 };
-
 
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
@@ -44,11 +43,10 @@ const wsServer = new WebSocketServer({
   path: '/graphql',
 });
 
-// Hand in the schema we just created and have the
-// WebSocketServer start listening.
-const serverCleanup = useServer({ schema }, wsServer);  
-  
-const server = new ApolloServer({ 
+// This is needed for the subscription logic to work
+const serverCleanup = useServer({ schema }, wsServer);
+
+const server = new ApolloServer({
   schema,
   introspection: true,  // Enable introspection for field descriptions
   plugins: [
@@ -69,13 +67,7 @@ await server.start();
 
 app.use('/graphql', cors<cors.CorsRequest>(), express.json(), expressMiddleware(server));
 
-
 const PORT = 4000;
-
-// Now that our HTTP server is fully set up, we can listen to it.
-
 httpServer.listen(PORT, () => {
-
   console.log(`Server is now running on http://localhost:${PORT}/graphql`);
-
 });

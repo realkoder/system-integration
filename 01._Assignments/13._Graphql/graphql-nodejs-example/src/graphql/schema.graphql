@@ -36,6 +36,9 @@ type Query {
 }
 
 type Mutation {
+    "Add a new author"
+    createAuthor(name: String!): Author
+
     "Create a new book"
     createBook(authorId: ID!, title: String!, releaseYear: Int): Book
 
