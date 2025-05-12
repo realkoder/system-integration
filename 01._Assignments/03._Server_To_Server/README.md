@@ -24,7 +24,7 @@ The goal is to create a new server in a different programming language that can 
 
 ---
 
-## Codebase Structure
+## Codebase Structure 🏗️
 
 The codebase for this assignment is located in the `03._Server_To_Server` directory, which contains two main subdirectories:
 

@@ -5,6 +5,7 @@ const app = express();
 app.use(express.static("public"));
 
 const clients = [];
+
 app.get("/subscribe", (req, res) => {
   res.writeHead(200, {
     Connection: "keep-alive",
