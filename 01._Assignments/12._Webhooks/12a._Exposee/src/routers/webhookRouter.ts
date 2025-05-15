@@ -1,7 +1,9 @@
 import { Router } from 'express';
-import { getWebhooksUrls, ping, registerNewWebhook, unRegisterWebhook } from '../utils/webhookUtils.js'
+import WebhookService from '../service/webhookUtils.js';
 
 const router = Router();
+
+const webhookService = new WebhookService()
 
 // ================================
 // TESTING SERVER IS ACCESSIBLE
@@ -85,16 +87,16 @@ router.post("/register", async (req, res) => {
     }
 
     try {
-        const couldPing = await ping(webhookCallbackUrl);
-        const isUrlRegistered = registerNewWebhook(webhookCallbackUrl);
+        const couldPing = await webhookService.ping(webhookCallbackUrl);
+        const isUrlRegistered = webhookService.registerNewWebhook(webhookCallbackUrl);
         if (couldPing && isUrlRegistered) {
             res.send({ message: `Webhook registered for payment-webhook` });
         } else {
-            res.status(400).send({ error: "WebhookCallbackUrl is already registered." });
+            res.status(400).send({ error: "WebhookCallbackUrl could NOT be registered for payment-webhook. We could NOT ping the webhookURL." });
         }
     } catch (e) {
         console.error("Error pinging", e)
-        res.send({ message: `Webhook could NOT BE registered for payment-webhook` });
+        res.send({ message: `Webhook could NOT be registered for payment-webhook` });
     }
     return;
 });
@@ -128,7 +130,7 @@ router.post("/register", async (req, res) => {
  *                   example: "No webhooks to ping"
  */
 router.get("/ping", (req, res) => {
-    const urls = getWebhooksUrls();
+    const urls = webhookService.getWebhooksUrls();
 
     if (urls.length === 0) {
         res.status(200).send({ data: "No webhooks to ping" });
@@ -136,9 +138,9 @@ router.get("/ping", (req, res) => {
     }
     console.log("Sending to all registered webhooks.");
     urls.forEach(async (url) => {
-        const couldPing = await ping(url);
+        const couldPing = await webhookService.ping(url);
         if (!couldPing) {
-            unRegisterWebhook(url);
+            webhookService.unRegisterWebhook(url);
         }
     });
     res.status(200).send({ data: "Pinged all webhooks" });
