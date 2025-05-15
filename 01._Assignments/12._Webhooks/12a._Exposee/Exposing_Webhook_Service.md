@@ -27,6 +27,8 @@ interface IPaymentPayload {
 
 ## How to get hooked 🎣
 
+_You can check out Swagger / OpenAPI docs at:_ https://webhook.realkoder.com/docs
+
 **1. Setup a POST endpoint to receive post requests with BODY: `payload: IPaymentPayload`**
 
 ```javascript
@@ -65,6 +67,20 @@ fetch("https://webhook.realkoder.com/ping");
 ```
 
 ## HURRAY 🥳 YOU HAVE HOOKED THE WEBHOOK 🕸️ 🎣 🕸️
+
+---
+
+<br>
+
+## Adding Openapi/Swagger docs
+
+```bash
+npm install swagger-jsdoc swagger-ui-express
+
+# Since we use TS we need types
+npm i --save-dev @types/swagger-jsdoc
+npm i --save-dev @types/swagger-ui-express
+```
 
 ---
 
