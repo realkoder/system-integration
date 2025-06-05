@@ -1,4 +1,4 @@
-# CORS HEADER
+# CORS HEADERS
 
 These following headers are related to _CORS_
 
